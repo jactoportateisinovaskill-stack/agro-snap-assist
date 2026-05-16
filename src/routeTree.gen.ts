@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResultadoRouteImport } from './routes/resultado'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as FinalizadoRouteImport } from './routes/finalizado'
 import { Route as DistribuidoresRouteImport } from './routes/distribuidores'
 import { Route as CompatibilidadeRouteImport } from './routes/compatibilidade'
 import { Route as CapturarRouteImport } from './routes/capturar'
@@ -25,6 +26,11 @@ const ResultadoRoute = ResultadoRouteImport.update({
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinalizadoRoute = FinalizadoRouteImport.update({
+  id: '/finalizado',
+  path: '/finalizado',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DistribuidoresRoute = DistribuidoresRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/capturar': typeof CapturarRoute
   '/compatibilidade': typeof CompatibilidadeRoute
   '/distribuidores': typeof DistribuidoresRoute
+  '/finalizado': typeof FinalizadoRoute
   '/insights': typeof InsightsRoute
   '/resultado': typeof ResultadoRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/capturar': typeof CapturarRoute
   '/compatibilidade': typeof CompatibilidadeRoute
   '/distribuidores': typeof DistribuidoresRoute
+  '/finalizado': typeof FinalizadoRoute
   '/insights': typeof InsightsRoute
   '/resultado': typeof ResultadoRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/capturar': typeof CapturarRoute
   '/compatibilidade': typeof CompatibilidadeRoute
   '/distribuidores': typeof DistribuidoresRoute
+  '/finalizado': typeof FinalizadoRoute
   '/insights': typeof InsightsRoute
   '/resultado': typeof ResultadoRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
+    | '/finalizado'
     | '/insights'
     | '/resultado'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
+    | '/finalizado'
     | '/insights'
     | '/resultado'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
+    | '/finalizado'
     | '/insights'
     | '/resultado'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   CapturarRoute: typeof CapturarRoute
   CompatibilidadeRoute: typeof CompatibilidadeRoute
   DistribuidoresRoute: typeof DistribuidoresRoute
+  FinalizadoRoute: typeof FinalizadoRoute
   InsightsRoute: typeof InsightsRoute
   ResultadoRoute: typeof ResultadoRoute
 }
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finalizado': {
+      id: '/finalizado'
+      path: '/finalizado'
+      fullPath: '/finalizado'
+      preLoaderRoute: typeof FinalizadoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/distribuidores': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   CapturarRoute: CapturarRoute,
   CompatibilidadeRoute: CompatibilidadeRoute,
   DistribuidoresRoute: DistribuidoresRoute,
+  FinalizadoRoute: FinalizadoRoute,
   InsightsRoute: InsightsRoute,
   ResultadoRoute: ResultadoRoute,
 }
