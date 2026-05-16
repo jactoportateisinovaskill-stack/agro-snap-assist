@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResultadoRouteImport } from './routes/resultado'
+import { Route as CompatibilidadeRouteImport } from './routes/compatibilidade'
 import { Route as CapturarRouteImport } from './routes/capturar'
 import { Route as AnalisandoRouteImport } from './routes/analisando'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ResultadoRoute = ResultadoRouteImport.update({
   id: '/resultado',
   path: '/resultado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompatibilidadeRoute = CompatibilidadeRouteImport.update({
+  id: '/compatibilidade',
+  path: '/compatibilidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CapturarRoute = CapturarRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
   '/capturar': typeof CapturarRoute
+  '/compatibilidade': typeof CompatibilidadeRoute
   '/resultado': typeof ResultadoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
   '/capturar': typeof CapturarRoute
+  '/compatibilidade': typeof CompatibilidadeRoute
   '/resultado': typeof ResultadoRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
   '/capturar': typeof CapturarRoute
+  '/compatibilidade': typeof CompatibilidadeRoute
   '/resultado': typeof ResultadoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analisando' | '/capturar' | '/resultado'
+  fullPaths:
+    | '/'
+    | '/analisando'
+    | '/capturar'
+    | '/compatibilidade'
+    | '/resultado'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analisando' | '/capturar' | '/resultado'
-  id: '__root__' | '/' | '/analisando' | '/capturar' | '/resultado'
+  to: '/' | '/analisando' | '/capturar' | '/compatibilidade' | '/resultado'
+  id:
+    | '__root__'
+    | '/'
+    | '/analisando'
+    | '/capturar'
+    | '/compatibilidade'
+    | '/resultado'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalisandoRoute: typeof AnalisandoRoute
   CapturarRoute: typeof CapturarRoute
+  CompatibilidadeRoute: typeof CompatibilidadeRoute
   ResultadoRoute: typeof ResultadoRoute
 }
 
@@ -76,6 +97,13 @@ declare module '@tanstack/react-router' {
       path: '/resultado'
       fullPath: '/resultado'
       preLoaderRoute: typeof ResultadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compatibilidade': {
+      id: '/compatibilidade'
+      path: '/compatibilidade'
+      fullPath: '/compatibilidade'
+      preLoaderRoute: typeof CompatibilidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/capturar': {
@@ -106,6 +134,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalisandoRoute: AnalisandoRoute,
   CapturarRoute: CapturarRoute,
+  CompatibilidadeRoute: CompatibilidadeRoute,
   ResultadoRoute: ResultadoRoute,
 }
 export const routeTree = rootRouteImport
