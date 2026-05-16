@@ -47,17 +47,12 @@ function Index() {
       </div>
 
       <div className="mt-auto pt-8 space-y-3">
+      <div className="mt-auto pt-8">
         <Link
           to="/capturar"
           className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground font-bold text-base shadow-[var(--shadow-glow)] active:scale-[0.98] transition"
         >
           <Camera className="h-5 w-5" /> Iniciar Identificação
-        </Link>
-        <Link
-          to="/finalizado"
-          className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background text-secondary font-semibold text-sm hover:bg-muted transition"
-        >
-          <History className="h-4 w-4" /> Ver Histórico
         </Link>
       </div>
     </Shell>
