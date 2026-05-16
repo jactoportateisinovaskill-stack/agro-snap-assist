@@ -24,10 +24,6 @@ function Index() {
           <div className="font-bold text-secondary">Carlos Silva</div>
           <div className="text-xs text-muted-foreground">ID TEC-0047</div>
         </div>
-        <div className="ml-auto text-right">
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Atendimento</div>
-          <div className="font-bold text-primary">#AT-2024-0892</div>
-        </div>
       </div>
 
       <div className="mt-10 flex flex-col items-center text-center">
