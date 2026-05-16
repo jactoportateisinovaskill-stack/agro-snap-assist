@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Camera, ScanLine, History, User } from "lucide-react";
+import { Camera, ScanLine, User } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
 export const Route = createFileRoute("/")({
