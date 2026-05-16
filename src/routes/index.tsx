@@ -46,7 +46,6 @@ function Index() {
         </div>
       </div>
 
-      <div className="mt-auto pt-8 space-y-3">
       <div className="mt-auto pt-8">
         <Link
           to="/capturar"
