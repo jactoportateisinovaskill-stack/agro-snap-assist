@@ -9,7 +9,8 @@ export const Route = createFileRoute("/finalizado")({
 
 const resumo = [
   ["Atendimento", "#AT-2024-0892"],
-  ["Peça identificada", "Bico Pulverizador (JT-7823-BK)"],
+  ["Peça identificada", "Bico Completo JD-12 (427062)"],
+  ["Utilização", "Jacto SB-20B"],
   ["Técnico", "Carlos Silva · TEC-0047"],
   ["Data e hora", "16/05/2026 · 14:32"],
   ["Confiança da IA", "94%"],

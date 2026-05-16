@@ -25,14 +25,14 @@ function Resultado() {
 
         <div className="mt-4 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
           <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
-            <Tag className="h-3 w-3" /> JT-7823-BK
+            <Tag className="h-3 w-3" /> 427062
           </div>
           <h2 className="mt-2 text-2xl font-extrabold leading-tight text-secondary">
-            Bico Pulverizador Cerâmico
+            Bico Completo JD-12
           </h2>
           <div className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
             <Tractor className="h-4 w-4 text-secondary" />
-            Compatível com <span className="font-semibold text-secondary">Jacto Uniport 3030</span>
+            Utilização <span className="font-semibold text-secondary">Jacto SB-20B</span>
           </div>
 
           <div className="mt-5 grid grid-cols-3 gap-2 text-center">
