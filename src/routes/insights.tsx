@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { TrendingUp, Globe2, Award, Search } from "lucide-react";
+import { TrendingUp, Globe2, Award, MapPin } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
+import { useRegion } from "@/lib/region";
 
 export const Route = createFileRoute("/insights")({
   head: () => ({ meta: [{ title: "Insights — Jacto Connect IA" }] }),
@@ -16,7 +17,7 @@ const topParts = [
   { name: "Bomba elétrica (1265961)", pct: 11, count: 40 },
 ];
 
-const shortcuts = ["Brasil", "LATAM", "América do Norte", "Europa", "Ásia", "África"];
+// region is captured in the initial onboarding screen (/) — not here
 
 // Global hotspots (x%, y%) on equirectangular world map
 type Level = "low" | "medium" | "high" | "critical";
@@ -43,8 +44,7 @@ const levelSize: Record<Level, number> = { low: 22, medium: 34, high: 46, critic
 
 function Insights() {
   const [period, setPeriod] = useState<"7d" | "30d" | "90d">("30d");
-  const [region, setRegion] = useState("");
-  const [shortcut, setShortcut] = useState("LATAM");
+  const [region] = useRegion();
   const [selected, setSelected] = useState(hotspots[0]);
 
   return (
@@ -63,40 +63,26 @@ function Insights() {
         ))}
       </div>
 
-      {/* Region input */}
-      <div className="mt-4 rounded-2xl border border-border bg-card p-3 shadow-[var(--shadow-card)]">
-        <label className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
-          Sua região
-        </label>
-        <div className="mt-1.5 flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-2.5">
-          <Search className="h-4 w-4 text-muted-foreground shrink-0" />
-          <input
-            value={region}
-            onChange={(e) => setRegion(e.target.value)}
-            placeholder="Ex.: Brasil, Mato Grosso, México, LATAM, Europa"
-            className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
-          />
+      {/* Region context summary (read-only — set on home) */}
+      <div
+        className="mt-4 rounded-2xl bg-card p-4 shadow-[var(--shadow-card)]"
+        style={{ borderLeft: "4px solid var(--primary)" }}
+      >
+        <div className="flex items-center gap-2">
+          <MapPin className="h-4 w-4 text-primary" />
+          <div className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+            Região operacional atual
+          </div>
         </div>
-        <p className="mt-1.5 text-[11px] text-muted-foreground">
-          Informe país, estado, cidade ou região de atuação
+        <div className="mt-1 text-base font-extrabold text-secondary">
+          {region || "Não informada"}
+        </div>
+        <p className="mt-1 text-[11px] text-muted-foreground">
+          Equipamentos e peças exibidos conforme disponibilidade regional.{" "}
+          <Link to="/" className="font-semibold text-primary underline-offset-2 hover:underline">
+            Alterar
+          </Link>
         </p>
-
-        {/* Shortcut chips */}
-        <div className="mt-3 -mx-1 flex gap-2 overflow-x-auto pb-1 px-1">
-          {shortcuts.map((s) => (
-            <button
-              key={s}
-              onClick={() => setShortcut(s)}
-              className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold border transition ${
-                shortcut === s
-                  ? "bg-secondary text-secondary-foreground border-secondary"
-                  : "bg-muted text-secondary border-border hover:bg-accent"
-              }`}
-            >
-              {s}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* KPIs */}
