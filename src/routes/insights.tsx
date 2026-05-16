@@ -9,11 +9,11 @@ export const Route = createFileRoute("/insights")({
 });
 
 const topParts = [
-  { name: "Bico Pulverizador", pct: 38, count: 142 },
-  { name: "Filtro de linha", pct: 22, count: 82 },
-  { name: "Regulador de pressão", pct: 16, count: 60 },
-  { name: "Conjunto de vedação", pct: 13, count: 48 },
-  { name: "Mangueira flexível", pct: 11, count: 40 },
+  { name: "Bico Completo JD-12 (427062)", pct: 38, count: 142 },
+  { name: "Filtro do bico M50/60 (1168545)", pct: 22, count: 82 },
+  { name: "Lança completa (915769)", pct: 16, count: 60 },
+  { name: "Registro completo LP 601 (1217605)", pct: 13, count: 48 },
+  { name: "Bomba elétrica (1265961)", pct: 11, count: 40 },
 ];
 
 // approximate Brazil regions as hotspot dots (x%, y%, intensity)
@@ -46,7 +46,7 @@ function Insights() {
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-3">
-        <KPI icon={Award} label="Peça top" value="Bico Pulverizador" sub="38% dos atendimentos" />
+        <KPI icon={Award} label="Peça top" value="Bico Completo JD-12" sub="38% · SB-20B" />
         <KPI icon={MapPin} label="Região top" value="Mato Grosso" sub="142 atendimentos" tone="primary" />
       </div>
 

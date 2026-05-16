@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MapPin, Phone, FileText, BookOpen, Headphones, MessageSquare, CheckCircle2, AlertCircle, Map, ChevronRight } from "lucide-react";
+import { MapPin, Phone, FileText, BookOpen, Headphones, MessageSquare, Map, ChevronRight, Navigation } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
 export const Route = createFileRoute("/distribuidores")({
@@ -8,9 +8,9 @@ export const Route = createFileRoute("/distribuidores")({
 });
 
 const distribs = [
-  { name: "AgroDistrib SP", dist: "12 km", stock: "Em estoque" as const },
-  { name: "Jacto Center MT", dist: "38 km", stock: "Em estoque" as const },
-  { name: "Campo Peças PR", dist: "67 km", stock: "Sob consulta" as const },
+  { name: "AgroDistrib SP", dist: "12 km", city: "Ribeirão Preto · SP" },
+  { name: "Jacto Center MT", dist: "38 km", city: "Rondonópolis · MT" },
+  { name: "Campo Peças PR", dist: "67 km", city: "Londrina · PR" },
 ];
 
 function Distribuidores() {
@@ -26,30 +26,28 @@ function Distribuidores() {
           </button>
         </div>
         <ul className="mt-2 space-y-2">
-          {distribs.map((d) => {
-            const ok = d.stock === "Em estoque";
-            return (
-              <li key={d.name} className="rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-card)]">
-                <div className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-primary">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-bold text-secondary">{d.name}</div>
-                    <div className="text-xs text-muted-foreground">{d.dist} de distância</div>
-                  </div>
-                  <span
-                    className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${
-                      ok ? "bg-success/10 text-success" : "bg-warning/15 text-warning"
-                    }`}
-                  >
-                    {ok ? <CheckCircle2 className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
-                    {d.stock}
-                  </span>
+          {distribs.map((d) => (
+            <li key={d.name} className="rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-card)]">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-primary">
+                  <MapPin className="h-5 w-5" />
                 </div>
-              </li>
-            );
-          })}
+                <div className="flex-1">
+                  <div className="font-bold text-secondary">{d.name}</div>
+                  <div className="text-xs text-muted-foreground">{d.city}</div>
+                  <div className="text-[11px] font-semibold text-primary mt-0.5">{d.dist} de distância</div>
+                </div>
+              </div>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-lg border border-primary text-primary text-xs font-bold">
+                  <Navigation className="h-3.5 w-3.5" /> Ver no mapa
+                </button>
+                <button className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
+                  <Phone className="h-3.5 w-3.5" /> Contato
+                </button>
+              </div>
+            </li>
+          ))}
         </ul>
       </section>
 

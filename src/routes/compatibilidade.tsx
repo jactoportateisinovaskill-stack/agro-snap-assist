@@ -8,15 +8,15 @@ export const Route = createFileRoute("/compatibilidade")({
 });
 
 const equipamentos = [
-  { name: "Uniport 3030", tag: "Identificado" },
-  { name: "Uniport 2530", tag: "Compatível" },
-  { name: "Condor 1200", tag: "Compatível" },
+  { name: "Jacto SB-20B", tag: "Identificado" },
+  { name: "Jacto SB-B", tag: "Compatível" },
+  { name: "Jacto SB20 Linha M", tag: "Compatível" },
 ];
 
 const relacionadas = [
-  { code: "JT-4421", name: "Filtro de linha" },
-  { code: "JT-9012", name: "Regulador de pressão" },
-  { code: "JT-3301", name: "Conjunto de vedação" },
+  { code: "1168547", name: "Bico JD 12" },
+  { code: "1168545", name: "Filtro do bico M50/60" },
+  { code: "1168546", name: "Capa do bico" },
 ];
 
 function Compat() {
@@ -24,8 +24,8 @@ function Compat() {
     <Shell back="/resultado" title="Compatibilidade" bg="muted">
       <div className="mt-2 rounded-2xl bg-secondary p-5 text-secondary-foreground shadow-[var(--shadow-card)]">
         <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Peça identificada</div>
-        <div className="mt-1 text-lg font-extrabold">Bico Pulverizador Cerâmico</div>
-        <div className="text-xs text-white/60">JT-7823-BK</div>
+        <div className="mt-1 text-lg font-extrabold">Bico Completo JD-12</div>
+        <div className="text-xs text-white/60">427062 · Utilização SB-B</div>
       </div>
 
       <section className="mt-6">
@@ -73,9 +73,9 @@ function Compat() {
             </div>
             <div className="flex-1">
               <div className="text-[10px] font-bold uppercase tracking-wider text-primary">Identificada</div>
-              <div className="font-bold text-secondary">Bico Pulverizador Cerâmico</div>
+              <div className="font-bold text-secondary">Bico Completo JD-12</div>
             </div>
-            <span className="text-xs font-mono font-bold text-secondary">JT-7823-BK</span>
+            <span className="text-xs font-mono font-bold text-secondary">427062</span>
           </div>
 
           {relacionadas.map((r) => (
