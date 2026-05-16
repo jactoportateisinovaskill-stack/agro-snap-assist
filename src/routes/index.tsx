@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Camera, ScanLine, History, User } from "lucide-react";
+import { Camera, ScanLine, User } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
 export const Route = createFileRoute("/")({
@@ -24,10 +24,6 @@ function Index() {
           <div className="font-bold text-secondary">Carlos Silva</div>
           <div className="text-xs text-muted-foreground">ID TEC-0047</div>
         </div>
-        <div className="ml-auto text-right">
-          <div className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">Atendimento</div>
-          <div className="font-bold text-primary">#AT-2024-0892</div>
-        </div>
       </div>
 
       <div className="mt-10 flex flex-col items-center text-center">
@@ -50,18 +46,12 @@ function Index() {
         </div>
       </div>
 
-      <div className="mt-auto pt-8 space-y-3">
+      <div className="mt-auto pt-8">
         <Link
           to="/capturar"
           className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground font-bold text-base shadow-[var(--shadow-glow)] active:scale-[0.98] transition"
         >
           <Camera className="h-5 w-5" /> Iniciar Identificação
-        </Link>
-        <Link
-          to="/finalizado"
-          className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background text-secondary font-semibold text-sm hover:bg-muted transition"
-        >
-          <History className="h-4 w-4" /> Ver Histórico
         </Link>
       </div>
     </Shell>

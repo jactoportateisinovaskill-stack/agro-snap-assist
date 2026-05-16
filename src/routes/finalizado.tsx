@@ -1,16 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, Plus, History } from "lucide-react";
+import { Check, Plus } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
 export const Route = createFileRoute("/finalizado")({
-  head: () => ({ meta: [{ title: "Atendimento finalizado — Jacto Connect IA" }] }),
+  head: () => ({ meta: [{ title: "Identificação concluída — Jacto Connect IA" }] }),
   component: Finalizado,
 });
 
 const resumo = [
-  ["Atendimento", "#AT-2024-0892"],
   ["Peça identificada", "Bico Completo JD-12 (427062)"],
-  ["Utilização", "Jacto SB-20B"],
+  ["Utilização", "Jacto SB-B"],
   ["Técnico", "Carlos Silva · TEC-0047"],
   ["Data e hora", "16/05/2026 · 14:32"],
   ["Confiança da IA", "94%"],
@@ -18,7 +17,7 @@ const resumo = [
 
 function Finalizado() {
   return (
-    <Shell back="/" title="Finalizado">
+    <Shell back="/" title="Concluído">
       <div className="mt-6 flex flex-col items-center text-center animate-slide-up">
         <div className="relative flex h-28 w-28 items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-primary/15 animate-pulse-ring" />
@@ -27,10 +26,10 @@ function Finalizado() {
           </div>
         </div>
         <h2 className="mt-6 text-2xl font-extrabold tracking-tight text-secondary">
-          Atendimento registrado<br />com sucesso!
+          Identificação concluída<br />com sucesso!
         </h2>
         <p className="mt-2 text-sm text-muted-foreground max-w-[280px]">
-          Os dados foram salvos e estão disponíveis no histórico do técnico.
+          A peça foi identificada e os dados técnicos estão disponíveis abaixo.
         </p>
       </div>
 
@@ -46,16 +45,13 @@ function Finalizado() {
         </dl>
       </div>
 
-      <div className="mt-auto pt-8 space-y-3">
+      <div className="mt-auto pt-8">
         <Link
           to="/"
           className="flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground font-bold shadow-[var(--shadow-glow)] active:scale-[0.98] transition"
         >
-          <Plus className="h-5 w-5" /> Novo atendimento
+          <Plus className="h-5 w-5" /> Nova Identificação
         </Link>
-        <button className="flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-border bg-background text-secondary font-semibold text-sm hover:bg-muted transition">
-          <History className="h-4 w-4" /> Ver histórico
-        </button>
       </div>
     </Shell>
   );
