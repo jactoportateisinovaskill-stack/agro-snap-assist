@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResultadoRouteImport } from './routes/resultado'
 import { Route as CapturarRouteImport } from './routes/capturar'
 import { Route as AnalisandoRouteImport } from './routes/analisando'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResultadoRoute = ResultadoRouteImport.update({
+  id: '/resultado',
+  path: '/resultado',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CapturarRoute = CapturarRouteImport.update({
   id: '/capturar',
   path: '/capturar',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
   '/capturar': typeof CapturarRoute
+  '/resultado': typeof ResultadoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
   '/capturar': typeof CapturarRoute
+  '/resultado': typeof ResultadoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
   '/capturar': typeof CapturarRoute
+  '/resultado': typeof ResultadoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analisando' | '/capturar'
+  fullPaths: '/' | '/analisando' | '/capturar' | '/resultado'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analisando' | '/capturar'
-  id: '__root__' | '/' | '/analisando' | '/capturar'
+  to: '/' | '/analisando' | '/capturar' | '/resultado'
+  id: '__root__' | '/' | '/analisando' | '/capturar' | '/resultado'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalisandoRoute: typeof AnalisandoRoute
   CapturarRoute: typeof CapturarRoute
+  ResultadoRoute: typeof ResultadoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/resultado': {
+      id: '/resultado'
+      path: '/resultado'
+      fullPath: '/resultado'
+      preLoaderRoute: typeof ResultadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/capturar': {
       id: '/capturar'
       path: '/capturar'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalisandoRoute: AnalisandoRoute,
   CapturarRoute: CapturarRoute,
+  ResultadoRoute: ResultadoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
