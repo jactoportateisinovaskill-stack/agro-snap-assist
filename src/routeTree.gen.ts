@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResultadoRouteImport } from './routes/resultado'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as FinalizadoRouteImport } from './routes/finalizado'
+import { Route as DistribuidoresRouteImport } from './routes/distribuidores'
+import { Route as CompatibilidadeRouteImport } from './routes/compatibilidade'
+import { Route as CapturarRouteImport } from './routes/capturar'
+import { Route as AnalisandoRouteImport } from './routes/analisando'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResultadoRoute = ResultadoRouteImport.update({
+  id: '/resultado',
+  path: '/resultado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinalizadoRoute = FinalizadoRouteImport.update({
+  id: '/finalizado',
+  path: '/finalizado',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DistribuidoresRoute = DistribuidoresRouteImport.update({
+  id: '/distribuidores',
+  path: '/distribuidores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompatibilidadeRoute = CompatibilidadeRouteImport.update({
+  id: '/compatibilidade',
+  path: '/compatibilidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CapturarRoute = CapturarRouteImport.update({
+  id: '/capturar',
+  path: '/capturar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalisandoRoute = AnalisandoRouteImport.update({
+  id: '/analisando',
+  path: '/analisando',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analisando': typeof AnalisandoRoute
+  '/capturar': typeof CapturarRoute
+  '/compatibilidade': typeof CompatibilidadeRoute
+  '/distribuidores': typeof DistribuidoresRoute
+  '/finalizado': typeof FinalizadoRoute
+  '/insights': typeof InsightsRoute
+  '/resultado': typeof ResultadoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analisando': typeof AnalisandoRoute
+  '/capturar': typeof CapturarRoute
+  '/compatibilidade': typeof CompatibilidadeRoute
+  '/distribuidores': typeof DistribuidoresRoute
+  '/finalizado': typeof FinalizadoRoute
+  '/insights': typeof InsightsRoute
+  '/resultado': typeof ResultadoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analisando': typeof AnalisandoRoute
+  '/capturar': typeof CapturarRoute
+  '/compatibilidade': typeof CompatibilidadeRoute
+  '/distribuidores': typeof DistribuidoresRoute
+  '/finalizado': typeof FinalizadoRoute
+  '/insights': typeof InsightsRoute
+  '/resultado': typeof ResultadoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/analisando'
+    | '/capturar'
+    | '/compatibilidade'
+    | '/distribuidores'
+    | '/finalizado'
+    | '/insights'
+    | '/resultado'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/analisando'
+    | '/capturar'
+    | '/compatibilidade'
+    | '/distribuidores'
+    | '/finalizado'
+    | '/insights'
+    | '/resultado'
+  id:
+    | '__root__'
+    | '/'
+    | '/analisando'
+    | '/capturar'
+    | '/compatibilidade'
+    | '/distribuidores'
+    | '/finalizado'
+    | '/insights'
+    | '/resultado'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalisandoRoute: typeof AnalisandoRoute
+  CapturarRoute: typeof CapturarRoute
+  CompatibilidadeRoute: typeof CompatibilidadeRoute
+  DistribuidoresRoute: typeof DistribuidoresRoute
+  FinalizadoRoute: typeof FinalizadoRoute
+  InsightsRoute: typeof InsightsRoute
+  ResultadoRoute: typeof ResultadoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/resultado': {
+      id: '/resultado'
+      path: '/resultado'
+      fullPath: '/resultado'
+      preLoaderRoute: typeof ResultadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finalizado': {
+      id: '/finalizado'
+      path: '/finalizado'
+      fullPath: '/finalizado'
+      preLoaderRoute: typeof FinalizadoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/distribuidores': {
+      id: '/distribuidores'
+      path: '/distribuidores'
+      fullPath: '/distribuidores'
+      preLoaderRoute: typeof DistribuidoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compatibilidade': {
+      id: '/compatibilidade'
+      path: '/compatibilidade'
+      fullPath: '/compatibilidade'
+      preLoaderRoute: typeof CompatibilidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/capturar': {
+      id: '/capturar'
+      path: '/capturar'
+      fullPath: '/capturar'
+      preLoaderRoute: typeof CapturarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analisando': {
+      id: '/analisando'
+      path: '/analisando'
+      fullPath: '/analisando'
+      preLoaderRoute: typeof AnalisandoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalisandoRoute: AnalisandoRoute,
+  CapturarRoute: CapturarRoute,
+  CompatibilidadeRoute: CompatibilidadeRoute,
+  DistribuidoresRoute: DistribuidoresRoute,
+  FinalizadoRoute: FinalizadoRoute,
+  InsightsRoute: InsightsRoute,
+  ResultadoRoute: ResultadoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
