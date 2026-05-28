@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3, LogOut } from "lucide-react";
+import { ArrowLeft, BarChart3, LogOut, Wrench } from "lucide-react";
 import type { ReactNode } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useAuth } from "@/lib/auth";
+import { useEquipment } from "@/lib/equipment";
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
@@ -82,6 +83,7 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
           )}
         </div>
       </header>
+      {isAuthenticated && tone === "light" && <EquipmentBadge />}
       <main className="flex-1 flex flex-col px-5 pb-8">{children}</main>
     </div>
   );
