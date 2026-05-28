@@ -40,7 +40,8 @@ function LoginPage() {
   return (
     <Shell back="/">
       <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center px-3 py-4">
-        <div className="w-full max-w-md rounded-2xl border-2 border-border bg-card p-5 shadow-[var(--shadow-elegant)]">
+        <div className="w-full max-w-md rounded-2xl border-2 border-border bg-card p-6 shadow-[var(--shadow-elegant)]">
+
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <LogIn className="h-5 w-5" />
@@ -53,7 +54,8 @@ function LoginPage() {
             </div>
           </div>
 
-          <div className="mt-3 flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-1.5 text-[11px]">
+          <div className="mt-5 flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-2 text-[11px]">
+
             <div className="flex items-center gap-1.5 text-secondary min-w-0">
               <MapPin className="h-3 w-3 text-primary shrink-0" />
               <span className="font-semibold uppercase tracking-wider text-muted-foreground">
@@ -70,8 +72,9 @@ function LoginPage() {
             <p className="mt-1.5 text-[11px] font-semibold text-destructive">{t("login.noRegion")}</p>
           )}
 
-          <form onSubmit={onSubmit} className="mt-3 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2.5">
+          <form onSubmit={onSubmit} className="mt-5 space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+
               <Field label={t("login.name")}>
                 <input
                   value={name}
@@ -107,7 +110,8 @@ function LoginPage() {
               <label className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {t("login.role")}
               </label>
-              <div className="mt-1.5 grid grid-cols-2 gap-2">
+              <div className="mt-2 grid grid-cols-2 gap-2.5">
+
                 <RoleOption
                   active={role === "usuario"}
                   onClick={() => setRole("usuario")}
