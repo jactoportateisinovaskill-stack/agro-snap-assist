@@ -59,14 +59,14 @@ function Resultado() {
     <Shell back="/capturar" title="Resultado da análise">
       <div className="mt-2 animate-slide-up">
         {/* Hero image */}
-        <div className="relative overflow-hidden rounded-2xl bg-secondary shadow-[var(--shadow-card)]">
-          <div className="aspect-[5/4] flex items-center justify-center bg-gradient-to-br from-zinc-700 to-zinc-900">
-            <div className="h-40 w-28 rounded-[40%] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-600 rotate-12 shadow-2xl" />
+        <div className="relative mx-auto w-full max-w-[260px] overflow-hidden rounded-2xl bg-secondary shadow-[var(--shadow-card)]">
+          <div className="aspect-[4/3] flex items-center justify-center bg-gradient-to-br from-zinc-700 to-zinc-900">
+            <div className="h-24 w-16 rounded-[40%] bg-gradient-to-b from-zinc-300 via-zinc-400 to-zinc-600 rotate-12 shadow-2xl" />
           </div>
-          <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-success px-3 py-1.5 text-xs font-extrabold text-success-foreground shadow-md">
-            <CheckCircle2 className="h-3.5 w-3.5" /> 94% de confiança
+          <div className="absolute top-2 left-2 inline-flex items-center gap-1 rounded-full bg-success px-2 py-1 text-[10px] font-extrabold text-success-foreground shadow-md">
+            <CheckCircle2 className="h-3 w-3" /> 94%
           </div>
-          <div className="absolute top-3 right-3 rounded-full bg-black/50 backdrop-blur px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+          <div className="absolute top-2 right-2 rounded-full bg-black/50 backdrop-blur px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white">
             Identificado
           </div>
         </div>
