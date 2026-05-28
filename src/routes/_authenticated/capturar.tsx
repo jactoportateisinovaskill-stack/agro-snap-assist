@@ -13,14 +13,16 @@ function Capturar() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
+  const goAnalyze = () => navigate({ to: "/analisando" });
+
   const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
     setPreview(url);
+    // Auto-analyze right after the photo is received.
+    setTimeout(goAnalyze, 250);
   };
-
-  const goAnalyze = () => navigate({ to: "/analisando" });
 
   return (
     <Shell back="/" title="Capturar peça" bg="dark">
