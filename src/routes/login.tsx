@@ -109,9 +109,9 @@ function LoginPage() {
             <div>
               <label className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {t("login.role")}
+              </label>
               <div className="mt-2 grid grid-cols-2 gap-2.5">
 
-              <div className="mt-1.5 grid grid-cols-2 gap-2">
                 <RoleOption
                   active={role === "usuario"}
                   onClick={() => setRole("usuario")}
