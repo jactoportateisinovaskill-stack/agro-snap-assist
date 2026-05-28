@@ -34,8 +34,9 @@ export const pt: Dict = {
     title: "Acesse sua conta",
     subtitle: "Entre para iniciar a identificação de peças.",
     name: "Nome",
-};
-
+    email: "E-mail",
+    password: "Senha",
+    role: "Perfil de acesso",
     roleUser: "Usuário",
     roleManager: "Gestor",
     submit: "Entrar",
@@ -47,6 +48,4 @@ export const pt: Dict = {
     insights: "Insights",
     identify: "Identificar peça",
   },
-} as const;
-
-export type Dict = typeof pt;
+};
