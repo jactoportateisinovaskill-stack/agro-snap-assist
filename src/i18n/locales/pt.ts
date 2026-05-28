@@ -1,4 +1,18 @@
-export const pt = {
+export type Dict = {
+  common: { back: string; continue: string; required: string; logout: string; language: string };
+  region: {
+    title: string; subtitle: string; label: string; placeholder: string; hint: string;
+    cta: string; disabled: string; technician: string;
+  };
+  login: {
+    title: string; subtitle: string; name: string; email: string; password: string;
+    role: string; roleUser: string; roleManager: string; submit: string;
+    regionLabel: string; changeRegion: string; noRegion: string;
+  };
+  nav: { insights: string; identify: string };
+};
+
+export const pt: Dict = {
   common: {
     back: "Voltar",
     continue: "Continuar",
