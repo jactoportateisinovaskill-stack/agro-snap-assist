@@ -53,9 +53,9 @@ function LoginPage() {
               <p className="text-xs text-muted-foreground truncate">{t("login.subtitle")}</p>
             </div>
           </div>
+
           <div className="mt-5 flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-2 text-[11px]">
 
-          <div className="mt-3 flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-1.5 text-[11px]">
             <div className="flex items-center gap-1.5 text-secondary min-w-0">
               <MapPin className="h-3 w-3 text-primary shrink-0" />
               <span className="font-semibold uppercase tracking-wider text-muted-foreground">
