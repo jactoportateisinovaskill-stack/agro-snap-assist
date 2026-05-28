@@ -40,7 +40,8 @@ function LoginPage() {
   return (
     <Shell back="/">
       <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center px-3 py-4">
-        <div className="w-full max-w-md rounded-2xl border-2 border-border bg-card p-5 shadow-[var(--shadow-elegant)]">
+        <div className="w-full max-w-md rounded-2xl border-2 border-border bg-card p-6 shadow-[var(--shadow-elegant)]">
+
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <LogIn className="h-5 w-5" />
