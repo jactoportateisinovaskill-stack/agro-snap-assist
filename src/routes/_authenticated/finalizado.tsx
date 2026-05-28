@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Check, Plus } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
-export const Route = createFileRoute("/finalizado")({
+export const Route = createFileRoute("/_authenticated/finalizado")({
   head: () => ({ meta: [{ title: "Identificação concluída — Jacto Connect IA" }] }),
   component: Finalizado,
 });

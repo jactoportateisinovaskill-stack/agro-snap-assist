@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Tractor, Cog, Circle, ChevronRight, MapPin } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
-export const Route = createFileRoute("/compatibilidade")({
+export const Route = createFileRoute("/_authenticated/compatibilidade")({
   head: () => ({ meta: [{ title: "Compatibilidade — Jacto Connect IA" }] }),
   component: Compat,
 });

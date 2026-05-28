@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ScanLine, Cpu, Sparkles, CheckCircle2 } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
-export const Route = createFileRoute("/analisando")({
+export const Route = createFileRoute("/_authenticated/analisando")({
   head: () => ({ meta: [{ title: "Analisando — Jacto Connect IA" }] }),
   component: Analisando,
 });

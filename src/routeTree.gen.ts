@@ -14,9 +14,9 @@ import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as FinalizadoRouteImport } from './routes/finalizado'
 import { Route as DistribuidoresRouteImport } from './routes/distribuidores'
 import { Route as CompatibilidadeRouteImport } from './routes/compatibilidade'
-import { Route as CapturarRouteImport } from './routes/capturar'
 import { Route as AnalisandoRouteImport } from './routes/analisando'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedCapturarRouteImport } from './routes/_authenticated/capturar'
 
 const ResultadoRoute = ResultadoRouteImport.update({
   id: '/resultado',
@@ -43,11 +43,6 @@ const CompatibilidadeRoute = CompatibilidadeRouteImport.update({
   path: '/compatibilidade',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CapturarRoute = CapturarRouteImport.update({
-  id: '/capturar',
-  path: '/capturar',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AnalisandoRoute = AnalisandoRouteImport.update({
   id: '/analisando',
   path: '/analisando',
@@ -58,80 +53,85 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedCapturarRoute = AuthenticatedCapturarRouteImport.update({
+  id: '/_authenticated/capturar',
+  path: '/capturar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
-  '/capturar': typeof CapturarRoute
   '/compatibilidade': typeof CompatibilidadeRoute
   '/distribuidores': typeof DistribuidoresRoute
   '/finalizado': typeof FinalizadoRoute
   '/insights': typeof InsightsRoute
   '/resultado': typeof ResultadoRoute
+  '/capturar': typeof AuthenticatedCapturarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
-  '/capturar': typeof CapturarRoute
   '/compatibilidade': typeof CompatibilidadeRoute
   '/distribuidores': typeof DistribuidoresRoute
   '/finalizado': typeof FinalizadoRoute
   '/insights': typeof InsightsRoute
   '/resultado': typeof ResultadoRoute
+  '/capturar': typeof AuthenticatedCapturarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/analisando': typeof AnalisandoRoute
-  '/capturar': typeof CapturarRoute
   '/compatibilidade': typeof CompatibilidadeRoute
   '/distribuidores': typeof DistribuidoresRoute
   '/finalizado': typeof FinalizadoRoute
   '/insights': typeof InsightsRoute
   '/resultado': typeof ResultadoRoute
+  '/_authenticated/capturar': typeof AuthenticatedCapturarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/analisando'
-    | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
     | '/finalizado'
     | '/insights'
     | '/resultado'
+    | '/capturar'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/analisando'
-    | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
     | '/finalizado'
     | '/insights'
     | '/resultado'
+    | '/capturar'
   id:
     | '__root__'
     | '/'
     | '/analisando'
-    | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
     | '/finalizado'
     | '/insights'
     | '/resultado'
+    | '/_authenticated/capturar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnalisandoRoute: typeof AnalisandoRoute
-  CapturarRoute: typeof CapturarRoute
   CompatibilidadeRoute: typeof CompatibilidadeRoute
   DistribuidoresRoute: typeof DistribuidoresRoute
   FinalizadoRoute: typeof FinalizadoRoute
   InsightsRoute: typeof InsightsRoute
   ResultadoRoute: typeof ResultadoRoute
+  AuthenticatedCapturarRoute: typeof AuthenticatedCapturarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -171,13 +171,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompatibilidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/capturar': {
-      id: '/capturar'
-      path: '/capturar'
-      fullPath: '/capturar'
-      preLoaderRoute: typeof CapturarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/analisando': {
       id: '/analisando'
       path: '/analisando'
@@ -192,19 +185,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/capturar': {
+      id: '/_authenticated/capturar'
+      path: '/capturar'
+      fullPath: '/capturar'
+      preLoaderRoute: typeof AuthenticatedCapturarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalisandoRoute: AnalisandoRoute,
-  CapturarRoute: CapturarRoute,
   CompatibilidadeRoute: CompatibilidadeRoute,
   DistribuidoresRoute: DistribuidoresRoute,
   FinalizadoRoute: FinalizadoRoute,
   InsightsRoute: InsightsRoute,
   ResultadoRoute: ResultadoRoute,
+  AuthenticatedCapturarRoute: AuthenticatedCapturarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -4,7 +4,7 @@ import { TrendingUp, Globe2, Award, MapPin } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 import { useRegion } from "@/lib/region";
 
-export const Route = createFileRoute("/insights")({
+export const Route = createFileRoute("/_authenticated/_gestor/insights")({
   head: () => ({ meta: [{ title: "Insights — Jacto Connect IA" }] }),
   component: Insights,
 });
