@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3 } from "lucide-react";
+import { ArrowLeft, BarChart3, LogOut } from "lucide-react";
 import type { ReactNode } from "react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useAuth } from "@/lib/auth";
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
@@ -27,6 +29,9 @@ interface ShellProps {
 export function Shell({ children, back, title, showMenu, bg = "white" }: ShellProps) {
   const bgClass =
     bg === "muted" ? "bg-muted" : bg === "dark" ? "bg-secondary text-secondary-foreground" : "bg-background";
+  const tone = bg === "dark" ? "dark" : "light";
+  const { isAuthenticated, isGestor, logout } = useAuth();
+
   return (
     <div className={`min-h-screen ${bgClass} flex flex-col`}>
       <header className="sticky top-0 z-20 flex items-center justify-between gap-3 px-5 pt-6 pb-4 bg-inherit">
@@ -34,7 +39,9 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
           {back && (
             <Link
               to={back}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-secondary hover:bg-accent transition"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition ${
+                tone === "dark" ? "bg-white/10 text-white hover:bg-white/20" : "bg-muted text-secondary hover:bg-accent"
+              }`}
               aria-label="Voltar"
             >
               <ArrowLeft className="h-5 w-5" />
@@ -46,15 +53,34 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
             <Logo />
           )}
         </div>
-        {showMenu && (
-          <Link
-            to="/insights"
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-muted text-secondary hover:bg-accent transition"
-            aria-label="Insights"
-          >
-            <BarChart3 className="h-5 w-5" />
-          </Link>
-        )}
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher tone={tone} />
+          {showMenu && isGestor && (
+            <Link
+              to="/insights"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition ${
+                tone === "dark" ? "bg-white/10 text-white hover:bg-white/20" : "bg-muted text-secondary hover:bg-accent"
+              }`}
+              aria-label="Insights"
+            >
+              <BarChart3 className="h-5 w-5" />
+            </Link>
+          )}
+          {isAuthenticated && (
+            <button
+              onClick={() => {
+                logout();
+                if (typeof window !== "undefined") window.location.href = "/";
+              }}
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition ${
+                tone === "dark" ? "bg-white/10 text-white hover:bg-white/20" : "bg-muted text-secondary hover:bg-accent"
+              }`}
+              aria-label="Sair"
+            >
+              <LogOut className="h-5 w-5" />
+            </button>
+          )}
+        </div>
       </header>
       <main className="flex-1 flex flex-col px-5 pb-8">{children}</main>
     </div>
