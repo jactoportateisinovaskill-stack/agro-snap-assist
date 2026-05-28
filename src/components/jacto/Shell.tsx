@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, BarChart3, LogOut } from "lucide-react";
+import { ArrowLeft, BarChart3, LogOut, Wrench } from "lucide-react";
 import type { ReactNode } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useAuth } from "@/lib/auth";
+import { useEquipment } from "@/lib/equipment";
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
@@ -34,12 +35,12 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
 
   return (
     <div className={`min-h-screen ${bgClass} flex flex-col`}>
-      <header className="sticky top-0 z-20 flex items-center justify-between gap-3 px-5 pt-6 pb-4 bg-inherit">
+      <header className="sticky top-0 z-20 flex items-center justify-between gap-3 px-5 pt-4 pb-3 sm:pt-5 bg-inherit">
         <div className="flex items-center gap-3 min-w-0">
           {back && (
             <Link
               to={back}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition ${
+              className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
                 tone === "dark" ? "bg-white/10 text-white hover:bg-white/20" : "bg-muted text-secondary hover:bg-accent"
               }`}
               aria-label="Voltar"
@@ -58,7 +59,7 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
           {showMenu && isGestor && (
             <Link
               to="/insights"
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition ${
+              className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
                 tone === "dark" ? "bg-white/10 text-white hover:bg-white/20" : "bg-muted text-secondary hover:bg-accent"
               }`}
               aria-label="Insights"
@@ -72,7 +73,7 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
                 logout();
                 if (typeof window !== "undefined") window.location.href = "/";
               }}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition ${
+              className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
                 tone === "dark" ? "bg-white/10 text-white hover:bg-white/20" : "bg-muted text-secondary hover:bg-accent"
               }`}
               aria-label="Sair"
@@ -82,7 +83,25 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
           )}
         </div>
       </header>
+      {isAuthenticated && tone === "light" && <EquipmentBadge />}
       <main className="flex-1 flex flex-col px-5 pb-8">{children}</main>
     </div>
   );
 }
+
+function EquipmentBadge() {
+  const [eq] = useEquipment();
+  if (!eq?.modelo) return null;
+  return (
+    <Link
+      to="/equipamento"
+      className="mx-5 -mt-1 mb-3 flex items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 py-1.5 text-[11px] text-secondary hover:bg-muted transition"
+    >
+      <Wrench className="h-3.5 w-3.5 text-primary" />
+      <span className="font-bold">{eq.modelo}</span>
+      {eq.linha && <span className="text-muted-foreground">· {eq.linha}</span>}
+      {eq.serial && <span className="ml-auto font-mono text-[10px] text-muted-foreground">#{eq.serial}</span>}
+    </Link>
+  );
+}
+

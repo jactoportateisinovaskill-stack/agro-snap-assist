@@ -9,7 +9,7 @@ import { useRegion } from "@/lib/region";
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Login — Jacto Connect IA" }] }),
   validateSearch: (s: Record<string, unknown>) => ({
-    redirect: (s.redirect as string) || "/capturar",
+    redirect: (s.redirect as string) || "/equipamento",
   }),
   component: LoginPage,
 });
@@ -30,7 +30,7 @@ function LoginPage() {
     e.preventDefault();
     if (!ready) return;
     login({ name, email, role });
-    navigate({ to: search.redirect as "/capturar" });
+    navigate({ to: search.redirect as "/equipamento" });
   };
 
   return (

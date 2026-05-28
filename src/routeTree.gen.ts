@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedResultadoRouteImport } from './routes/_authenticated/resultado'
 import { Route as AuthenticatedFinalizadoRouteImport } from './routes/_authenticated/finalizado'
+import { Route as AuthenticatedEquipamentoRouteImport } from './routes/_authenticated/equipamento'
 import { Route as AuthenticatedDistribuidoresRouteImport } from './routes/_authenticated/distribuidores'
 import { Route as AuthenticatedCompatibilidadeRouteImport } from './routes/_authenticated/compatibilidade'
 import { Route as AuthenticatedCapturarRouteImport } from './routes/_authenticated/capturar'
@@ -45,6 +46,12 @@ const AuthenticatedFinalizadoRoute = AuthenticatedFinalizadoRouteImport.update({
   path: '/finalizado',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedEquipamentoRoute =
+  AuthenticatedEquipamentoRouteImport.update({
+    id: '/equipamento',
+    path: '/equipamento',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedDistribuidoresRoute =
   AuthenticatedDistribuidoresRouteImport.update({
     id: '/distribuidores',
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/capturar': typeof AuthenticatedCapturarRoute
   '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
   '/distribuidores': typeof AuthenticatedDistribuidoresRoute
+  '/equipamento': typeof AuthenticatedEquipamentoRoute
   '/finalizado': typeof AuthenticatedFinalizadoRoute
   '/resultado': typeof AuthenticatedResultadoRoute
   '/insights': typeof AuthenticatedGestorInsightsRoute
@@ -96,6 +104,7 @@ export interface FileRoutesByTo {
   '/capturar': typeof AuthenticatedCapturarRoute
   '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
   '/distribuidores': typeof AuthenticatedDistribuidoresRoute
+  '/equipamento': typeof AuthenticatedEquipamentoRoute
   '/finalizado': typeof AuthenticatedFinalizadoRoute
   '/resultado': typeof AuthenticatedResultadoRoute
   '/insights': typeof AuthenticatedGestorInsightsRoute
@@ -110,6 +119,7 @@ export interface FileRoutesById {
   '/_authenticated/capturar': typeof AuthenticatedCapturarRoute
   '/_authenticated/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
   '/_authenticated/distribuidores': typeof AuthenticatedDistribuidoresRoute
+  '/_authenticated/equipamento': typeof AuthenticatedEquipamentoRoute
   '/_authenticated/finalizado': typeof AuthenticatedFinalizadoRoute
   '/_authenticated/resultado': typeof AuthenticatedResultadoRoute
   '/_authenticated/_gestor/insights': typeof AuthenticatedGestorInsightsRoute
@@ -123,6 +133,7 @@ export interface FileRouteTypes {
     | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
+    | '/equipamento'
     | '/finalizado'
     | '/resultado'
     | '/insights'
@@ -134,6 +145,7 @@ export interface FileRouteTypes {
     | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
+    | '/equipamento'
     | '/finalizado'
     | '/resultado'
     | '/insights'
@@ -147,6 +159,7 @@ export interface FileRouteTypes {
     | '/_authenticated/capturar'
     | '/_authenticated/compatibilidade'
     | '/_authenticated/distribuidores'
+    | '/_authenticated/equipamento'
     | '/_authenticated/finalizado'
     | '/_authenticated/resultado'
     | '/_authenticated/_gestor/insights'
@@ -193,6 +206,13 @@ declare module '@tanstack/react-router' {
       path: '/finalizado'
       fullPath: '/finalizado'
       preLoaderRoute: typeof AuthenticatedFinalizadoRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/equipamento': {
+      id: '/_authenticated/equipamento'
+      path: '/equipamento'
+      fullPath: '/equipamento'
+      preLoaderRoute: typeof AuthenticatedEquipamentoRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/distribuidores': {
@@ -257,6 +277,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedCapturarRoute: typeof AuthenticatedCapturarRoute
   AuthenticatedCompatibilidadeRoute: typeof AuthenticatedCompatibilidadeRoute
   AuthenticatedDistribuidoresRoute: typeof AuthenticatedDistribuidoresRoute
+  AuthenticatedEquipamentoRoute: typeof AuthenticatedEquipamentoRoute
   AuthenticatedFinalizadoRoute: typeof AuthenticatedFinalizadoRoute
   AuthenticatedResultadoRoute: typeof AuthenticatedResultadoRoute
 }
@@ -267,6 +288,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedCapturarRoute: AuthenticatedCapturarRoute,
   AuthenticatedCompatibilidadeRoute: AuthenticatedCompatibilidadeRoute,
   AuthenticatedDistribuidoresRoute: AuthenticatedDistribuidoresRoute,
+  AuthenticatedEquipamentoRoute: AuthenticatedEquipamentoRoute,
   AuthenticatedFinalizadoRoute: AuthenticatedFinalizadoRoute,
   AuthenticatedResultadoRoute: AuthenticatedResultadoRoute,
 }

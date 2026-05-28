@@ -36,4 +36,18 @@ export const es: Dict = {
     insights: "Insights",
     identify: "Identificar pieza",
   },
+  equipment: {
+    title: "Identificación del equipo",
+    subtitle: "Indique los datos del equipo en campo para personalizar la búsqueda.",
+    modelo: "Modelo",
+    linha: "Línea",
+    versao: "Versión",
+    ano: "Año",
+    serial: "Número de serie",
+    submit: "Confirmar equipo",
+    skip: "Omitir por ahora",
+    summaryTitle: "Equipo actual",
+    change: "Editar",
+  },
 };
+
