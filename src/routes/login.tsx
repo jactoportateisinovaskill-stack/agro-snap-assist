@@ -72,8 +72,9 @@ function LoginPage() {
             <p className="mt-1.5 text-[11px] font-semibold text-destructive">{t("login.noRegion")}</p>
           )}
 
-          <form onSubmit={onSubmit} className="mt-3 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2.5">
+          <form onSubmit={onSubmit} className="mt-5 space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+
               <Field label={t("login.name")}>
                 <input
                   value={name}
