@@ -88,3 +88,20 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
     </div>
   );
 }
+
+function EquipmentBadge() {
+  const [eq] = useEquipment();
+  if (!eq?.modelo) return null;
+  return (
+    <Link
+      to="/equipamento"
+      className="mx-5 -mt-1 mb-3 flex items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 py-1.5 text-[11px] text-secondary hover:bg-muted transition"
+    >
+      <Wrench className="h-3.5 w-3.5 text-primary" />
+      <span className="font-bold">{eq.modelo}</span>
+      {eq.linha && <span className="text-muted-foreground">· {eq.linha}</span>}
+      {eq.serial && <span className="ml-auto font-mono text-[10px] text-muted-foreground">#{eq.serial}</span>}
+    </Link>
+  );
+}
+
