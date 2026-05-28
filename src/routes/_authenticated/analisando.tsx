@@ -23,12 +23,12 @@ function Analisando() {
       setPct((p) => {
         if (p >= 100) {
           clearInterval(t);
-          setTimeout(() => navigate({ to: "/resultado" }), 350);
+          setTimeout(() => navigate({ to: "/resultado" }), 120);
           return 100;
         }
-        return p + 4;
+        return p + 10;
       });
-    }, 90);
+    }, 45);
     return () => clearInterval(t);
   }, [navigate]);
 
