@@ -30,11 +30,11 @@ function LoginPage() {
     e.preventDefault();
     if (!ready) return;
     login({ name, email, role });
-    const target =
-      role === "manager"
-        ? "/insights"
-        : (search.redirect as "/equipamento");
-    navigate({ to: target });
+    if (role === "manager") {
+      navigate({ to: "/insights" });
+    } else {
+      navigate({ to: search.redirect as "/equipamento" });
+    }
   };
 
   return (
