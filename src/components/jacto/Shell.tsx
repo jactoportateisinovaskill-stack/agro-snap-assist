@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowLeft, BarChart3, LogOut, Wrench } from "lucide-react";
 import type { ReactNode } from "react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -89,9 +89,21 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
   );
 }
 
+// Routes where the equipment context badge makes sense (operational flow).
+const BADGE_ROUTES = new Set([
+  "/capturar",
+  "/analisando",
+  "/resultado",
+  "/compatibilidade",
+  "/distribuidores",
+  "/finalizado",
+]);
+
 function EquipmentBadge() {
   const [eq] = useEquipment();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   if (!eq?.modelo) return null;
+  if (!BADGE_ROUTES.has(pathname)) return null;
   return (
     <Link
       to="/equipamento"
