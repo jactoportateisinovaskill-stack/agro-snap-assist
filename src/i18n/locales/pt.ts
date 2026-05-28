@@ -47,8 +47,22 @@ export const pt: Dict = {
     roleManager: "Gestor",
     submit: "Entrar",
     regionLabel: "Região selecionada",
-    changeRegion: "Alterar",
-    noRegion: "Selecione uma região antes de continuar",
+  },
+  equipment: {
+    title: "Identificação do equipamento",
+    subtitle: "Informe os dados do equipamento em campo para personalizar a busca.",
+    modelo: "Modelo",
+    linha: "Linha",
+    versao: "Versão",
+    ano: "Ano",
+    serial: "Número de série",
+    submit: "Confirmar equipamento",
+    skip: "Pular por enquanto",
+    summaryTitle: "Equipamento atual",
+    change: "Editar",
+  },
+};
+
   },
   nav: {
     insights: "Insights",

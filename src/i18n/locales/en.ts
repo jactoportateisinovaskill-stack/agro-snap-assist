@@ -36,4 +36,18 @@ export const en: Dict = {
     insights: "Insights",
     identify: "Identify part",
   },
+  equipment: {
+    title: "Equipment identification",
+    subtitle: "Enter the field equipment data to personalize your search.",
+    modelo: "Model",
+    linha: "Line",
+    versao: "Version",
+    ano: "Year",
+    serial: "Serial number",
+    submit: "Confirm equipment",
+    skip: "Skip for now",
+    summaryTitle: "Current equipment",
+    change: "Edit",
+  },
 };
+
