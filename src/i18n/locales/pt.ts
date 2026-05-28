@@ -10,7 +10,13 @@ export type Dict = {
     regionLabel: string; changeRegion: string; noRegion: string;
   };
   nav: { insights: string; identify: string };
+  equipment: {
+    title: string; subtitle: string; modelo: string; linha: string; versao: string;
+    ano: string; serial: string; submit: string; skip: string;
+    summaryTitle: string; change: string;
+  };
 };
+
 
 export const pt: Dict = {
   common: {
