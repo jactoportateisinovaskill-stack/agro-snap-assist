@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { Camera, ImagePlus, Zap, X } from "lucide-react";
+import { Camera, ImagePlus, X } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
 export const Route = createFileRoute("/_authenticated/capturar")({
@@ -13,14 +13,16 @@ function Capturar() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
+  const goAnalyze = () => navigate({ to: "/analisando" });
+
   const onPick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
     setPreview(url);
+    // Auto-analyze right after the photo is received.
+    setTimeout(goAnalyze, 250);
   };
-
-  const goAnalyze = () => navigate({ to: "/analisando" });
 
   return (
     <Shell back="/" title="Capturar peça" bg="dark">
@@ -100,14 +102,8 @@ function Capturar() {
           <Camera className="h-7 w-7" />
         </button>
 
-        <button
-          onClick={goAnalyze}
-          className="flex h-12 flex-col items-center justify-center gap-0.5 rounded-2xl bg-white/10 px-4 text-white hover:bg-white/20 transition"
-          aria-label="Usar IA"
-        >
-          <Zap className="h-5 w-5" />
-          <span className="text-[10px] font-bold uppercase tracking-wider">IA</span>
-        </button>
+        <div className="h-12 w-12" aria-hidden />
+
       </div>
 
       <input
