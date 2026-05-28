@@ -31,7 +31,7 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
   const bgClass =
     bg === "muted" ? "bg-muted" : bg === "dark" ? "bg-secondary text-secondary-foreground" : "bg-background";
   const tone = bg === "dark" ? "dark" : "light";
-  const { isAuthenticated, isGestor, logout } = useAuth();
+  const { isAuthenticated, isManager, logout } = useAuth();
 
   return (
     <div className={`min-h-screen ${bgClass} flex flex-col`}>
@@ -56,7 +56,7 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
         </div>
         <div className="flex items-center gap-2">
           <LanguageSwitcher tone={tone} />
-          {showMenu && isGestor && (
+          {showMenu && isManager && (
             <Link
               to="/insights"
               className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
@@ -83,7 +83,7 @@ export function Shell({ children, back, title, showMenu, bg = "white" }: ShellPr
           )}
         </div>
       </header>
-      {isAuthenticated && tone === "light" && <EquipmentBadge />}
+      {isAuthenticated && !isManager && tone === "light" && <EquipmentBadge />}
       <main className="flex-1 flex flex-col px-5 pb-8">{children}</main>
     </div>
   );
