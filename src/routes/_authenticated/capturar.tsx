@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Camera, Image as ImageIcon, Zap } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
-export const Route = createFileRoute("/capturar")({
+export const Route = createFileRoute("/_authenticated/capturar")({
   head: () => ({ meta: [{ title: "Capturar Peça — Jacto Connect IA" }] }),
   component: Capturar,
 });
