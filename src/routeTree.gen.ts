@@ -9,43 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ResultadoRouteImport } from './routes/resultado'
-import { Route as InsightsRouteImport } from './routes/insights'
-import { Route as FinalizadoRouteImport } from './routes/finalizado'
-import { Route as DistribuidoresRouteImport } from './routes/distribuidores'
-import { Route as CompatibilidadeRouteImport } from './routes/compatibilidade'
-import { Route as AnalisandoRouteImport } from './routes/analisando'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedResultadoRouteImport } from './routes/_authenticated/resultado'
+import { Route as AuthenticatedFinalizadoRouteImport } from './routes/_authenticated/finalizado'
+import { Route as AuthenticatedDistribuidoresRouteImport } from './routes/_authenticated/distribuidores'
+import { Route as AuthenticatedCompatibilidadeRouteImport } from './routes/_authenticated/compatibilidade'
 import { Route as AuthenticatedCapturarRouteImport } from './routes/_authenticated/capturar'
+import { Route as AuthenticatedAnalisandoRouteImport } from './routes/_authenticated/analisando'
+import { Route as AuthenticatedGestorRouteImport } from './routes/_authenticated/_gestor'
+import { Route as AuthenticatedGestorInsightsRouteImport } from './routes/_authenticated/_gestor/insights'
 
-const ResultadoRoute = ResultadoRouteImport.update({
-  id: '/resultado',
-  path: '/resultado',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InsightsRoute = InsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FinalizadoRoute = FinalizadoRouteImport.update({
-  id: '/finalizado',
-  path: '/finalizado',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DistribuidoresRoute = DistribuidoresRouteImport.update({
-  id: '/distribuidores',
-  path: '/distribuidores',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CompatibilidadeRoute = CompatibilidadeRouteImport.update({
-  id: '/compatibilidade',
-  path: '/compatibilidade',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AnalisandoRoute = AnalisandoRouteImport.update({
-  id: '/analisando',
-  path: '/analisando',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -53,129 +35,143 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedCapturarRoute = AuthenticatedCapturarRouteImport.update({
-  id: '/_authenticated/capturar',
-  path: '/capturar',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedResultadoRoute = AuthenticatedResultadoRouteImport.update({
+  id: '/resultado',
+  path: '/resultado',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedFinalizadoRoute = AuthenticatedFinalizadoRouteImport.update({
+  id: '/finalizado',
+  path: '/finalizado',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedDistribuidoresRoute =
+  AuthenticatedDistribuidoresRouteImport.update({
+    id: '/distribuidores',
+    path: '/distribuidores',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedCompatibilidadeRoute =
+  AuthenticatedCompatibilidadeRouteImport.update({
+    id: '/compatibilidade',
+    path: '/compatibilidade',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedCapturarRoute = AuthenticatedCapturarRouteImport.update({
+  id: '/capturar',
+  path: '/capturar',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAnalisandoRoute = AuthenticatedAnalisandoRouteImport.update({
+  id: '/analisando',
+  path: '/analisando',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedGestorRoute = AuthenticatedGestorRouteImport.update({
+  id: '/_gestor',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedGestorInsightsRoute =
+  AuthenticatedGestorInsightsRouteImport.update({
+    id: '/insights',
+    path: '/insights',
+    getParentRoute: () => AuthenticatedGestorRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/analisando': typeof AnalisandoRoute
-  '/compatibilidade': typeof CompatibilidadeRoute
-  '/distribuidores': typeof DistribuidoresRoute
-  '/finalizado': typeof FinalizadoRoute
-  '/insights': typeof InsightsRoute
-  '/resultado': typeof ResultadoRoute
+  '/login': typeof LoginRoute
+  '/analisando': typeof AuthenticatedAnalisandoRoute
   '/capturar': typeof AuthenticatedCapturarRoute
+  '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
+  '/distribuidores': typeof AuthenticatedDistribuidoresRoute
+  '/finalizado': typeof AuthenticatedFinalizadoRoute
+  '/resultado': typeof AuthenticatedResultadoRoute
+  '/insights': typeof AuthenticatedGestorInsightsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/analisando': typeof AnalisandoRoute
-  '/compatibilidade': typeof CompatibilidadeRoute
-  '/distribuidores': typeof DistribuidoresRoute
-  '/finalizado': typeof FinalizadoRoute
-  '/insights': typeof InsightsRoute
-  '/resultado': typeof ResultadoRoute
+  '/login': typeof LoginRoute
+  '/analisando': typeof AuthenticatedAnalisandoRoute
   '/capturar': typeof AuthenticatedCapturarRoute
+  '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
+  '/distribuidores': typeof AuthenticatedDistribuidoresRoute
+  '/finalizado': typeof AuthenticatedFinalizadoRoute
+  '/resultado': typeof AuthenticatedResultadoRoute
+  '/insights': typeof AuthenticatedGestorInsightsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/analisando': typeof AnalisandoRoute
-  '/compatibilidade': typeof CompatibilidadeRoute
-  '/distribuidores': typeof DistribuidoresRoute
-  '/finalizado': typeof FinalizadoRoute
-  '/insights': typeof InsightsRoute
-  '/resultado': typeof ResultadoRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_authenticated/_gestor': typeof AuthenticatedGestorRouteWithChildren
+  '/_authenticated/analisando': typeof AuthenticatedAnalisandoRoute
   '/_authenticated/capturar': typeof AuthenticatedCapturarRoute
+  '/_authenticated/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
+  '/_authenticated/distribuidores': typeof AuthenticatedDistribuidoresRoute
+  '/_authenticated/finalizado': typeof AuthenticatedFinalizadoRoute
+  '/_authenticated/resultado': typeof AuthenticatedResultadoRoute
+  '/_authenticated/_gestor/insights': typeof AuthenticatedGestorInsightsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
     | '/analisando'
+    | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
     | '/finalizado'
-    | '/insights'
     | '/resultado'
-    | '/capturar'
+    | '/insights'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
     | '/analisando'
+    | '/capturar'
     | '/compatibilidade'
     | '/distribuidores'
     | '/finalizado'
-    | '/insights'
     | '/resultado'
-    | '/capturar'
+    | '/insights'
   id:
     | '__root__'
     | '/'
-    | '/analisando'
-    | '/compatibilidade'
-    | '/distribuidores'
-    | '/finalizado'
-    | '/insights'
-    | '/resultado'
+    | '/_authenticated'
+    | '/login'
+    | '/_authenticated/_gestor'
+    | '/_authenticated/analisando'
     | '/_authenticated/capturar'
+    | '/_authenticated/compatibilidade'
+    | '/_authenticated/distribuidores'
+    | '/_authenticated/finalizado'
+    | '/_authenticated/resultado'
+    | '/_authenticated/_gestor/insights'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AnalisandoRoute: typeof AnalisandoRoute
-  CompatibilidadeRoute: typeof CompatibilidadeRoute
-  DistribuidoresRoute: typeof DistribuidoresRoute
-  FinalizadoRoute: typeof FinalizadoRoute
-  InsightsRoute: typeof InsightsRoute
-  ResultadoRoute: typeof ResultadoRoute
-  AuthenticatedCapturarRoute: typeof AuthenticatedCapturarRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/resultado': {
-      id: '/resultado'
-      path: '/resultado'
-      fullPath: '/resultado'
-      preLoaderRoute: typeof ResultadoRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/insights': {
-      id: '/insights'
-      path: '/insights'
-      fullPath: '/insights'
-      preLoaderRoute: typeof InsightsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/finalizado': {
-      id: '/finalizado'
-      path: '/finalizado'
-      fullPath: '/finalizado'
-      preLoaderRoute: typeof FinalizadoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/distribuidores': {
-      id: '/distribuidores'
-      path: '/distribuidores'
-      fullPath: '/distribuidores'
-      preLoaderRoute: typeof DistribuidoresRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/compatibilidade': {
-      id: '/compatibilidade'
-      path: '/compatibilidade'
-      fullPath: '/compatibilidade'
-      preLoaderRoute: typeof CompatibilidadeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/analisando': {
-      id: '/analisando'
-      path: '/analisando'
-      fullPath: '/analisando'
-      preLoaderRoute: typeof AnalisandoRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -185,25 +181,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/resultado': {
+      id: '/_authenticated/resultado'
+      path: '/resultado'
+      fullPath: '/resultado'
+      preLoaderRoute: typeof AuthenticatedResultadoRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/finalizado': {
+      id: '/_authenticated/finalizado'
+      path: '/finalizado'
+      fullPath: '/finalizado'
+      preLoaderRoute: typeof AuthenticatedFinalizadoRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/distribuidores': {
+      id: '/_authenticated/distribuidores'
+      path: '/distribuidores'
+      fullPath: '/distribuidores'
+      preLoaderRoute: typeof AuthenticatedDistribuidoresRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/compatibilidade': {
+      id: '/_authenticated/compatibilidade'
+      path: '/compatibilidade'
+      fullPath: '/compatibilidade'
+      preLoaderRoute: typeof AuthenticatedCompatibilidadeRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/capturar': {
       id: '/_authenticated/capturar'
       path: '/capturar'
       fullPath: '/capturar'
       preLoaderRoute: typeof AuthenticatedCapturarRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/analisando': {
+      id: '/_authenticated/analisando'
+      path: '/analisando'
+      fullPath: '/analisando'
+      preLoaderRoute: typeof AuthenticatedAnalisandoRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_gestor': {
+      id: '/_authenticated/_gestor'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedGestorRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_gestor/insights': {
+      id: '/_authenticated/_gestor/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof AuthenticatedGestorInsightsRouteImport
+      parentRoute: typeof AuthenticatedGestorRoute
     }
   }
 }
 
+interface AuthenticatedGestorRouteChildren {
+  AuthenticatedGestorInsightsRoute: typeof AuthenticatedGestorInsightsRoute
+}
+
+const AuthenticatedGestorRouteChildren: AuthenticatedGestorRouteChildren = {
+  AuthenticatedGestorInsightsRoute: AuthenticatedGestorInsightsRoute,
+}
+
+const AuthenticatedGestorRouteWithChildren =
+  AuthenticatedGestorRoute._addFileChildren(AuthenticatedGestorRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedGestorRoute: typeof AuthenticatedGestorRouteWithChildren
+  AuthenticatedAnalisandoRoute: typeof AuthenticatedAnalisandoRoute
+  AuthenticatedCapturarRoute: typeof AuthenticatedCapturarRoute
+  AuthenticatedCompatibilidadeRoute: typeof AuthenticatedCompatibilidadeRoute
+  AuthenticatedDistribuidoresRoute: typeof AuthenticatedDistribuidoresRoute
+  AuthenticatedFinalizadoRoute: typeof AuthenticatedFinalizadoRoute
+  AuthenticatedResultadoRoute: typeof AuthenticatedResultadoRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedGestorRoute: AuthenticatedGestorRouteWithChildren,
+  AuthenticatedAnalisandoRoute: AuthenticatedAnalisandoRoute,
+  AuthenticatedCapturarRoute: AuthenticatedCapturarRoute,
+  AuthenticatedCompatibilidadeRoute: AuthenticatedCompatibilidadeRoute,
+  AuthenticatedDistribuidoresRoute: AuthenticatedDistribuidoresRoute,
+  AuthenticatedFinalizadoRoute: AuthenticatedFinalizadoRoute,
+  AuthenticatedResultadoRoute: AuthenticatedResultadoRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AnalisandoRoute: AnalisandoRoute,
-  CompatibilidadeRoute: CompatibilidadeRoute,
-  DistribuidoresRoute: DistribuidoresRoute,
-  FinalizadoRoute: FinalizadoRoute,
-  InsightsRoute: InsightsRoute,
-  ResultadoRoute: ResultadoRoute,
-  AuthenticatedCapturarRoute: AuthenticatedCapturarRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
