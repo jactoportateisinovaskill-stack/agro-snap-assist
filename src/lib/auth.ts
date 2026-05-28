@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type Role = "gestor" | "usuario";
+export type Role = "manager" | "usuario";
 
 export interface AuthUser {
   name: string;
@@ -11,11 +11,23 @@ export interface AuthUser {
 const KEY = "jacto:auth";
 const EVENT = "jacto:auth";
 
+function normalize(raw: unknown): AuthUser | null {
+  if (!raw || typeof raw !== "object") return null;
+  const r = raw as Record<string, unknown>;
+  // Backwards compat: previously stored as "gestor"
+  const role: Role = r.role === "manager" || r.role === "gestor" ? "manager" : "usuario";
+  return {
+    name: String(r.name ?? "Operador"),
+    email: String(r.email ?? ""),
+    role,
+  };
+}
+
 export function getAuthUser(): AuthUser | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = window.localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as AuthUser) : null;
+    return raw ? normalize(JSON.parse(raw)) : null;
   } catch {
     return null;
   }
@@ -44,10 +56,13 @@ export function useAuth() {
     window.addEventListener(EVENT, h);
     return () => window.removeEventListener(EVENT, h);
   }, []);
+  const isManager = user?.role === "manager";
   return {
     user,
     isAuthenticated: !!user,
-    isGestor: user?.role === "gestor",
+    isManager,
+    /** @deprecated use isManager */
+    isGestor: isManager,
     login,
     logout,
   };

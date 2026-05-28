@@ -30,7 +30,11 @@ function LoginPage() {
     e.preventDefault();
     if (!ready) return;
     login({ name, email, role });
-    navigate({ to: search.redirect as "/equipamento" });
+    const target =
+      role === "manager"
+        ? "/insights"
+        : (search.redirect as "/equipamento");
+    navigate({ to: target });
   };
 
   return (
@@ -105,8 +109,8 @@ function LoginPage() {
               label={t("login.roleUser")}
             />
             <RoleOption
-              active={role === "gestor"}
-              onClick={() => setRole("gestor")}
+              active={role === "manager"}
+              onClick={() => setRole("manager")}
               icon={<ShieldCheck className="h-4 w-4" />}
               label={t("login.roleManager")}
             />
