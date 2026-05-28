@@ -143,7 +143,6 @@ function LoginPage() {
     </Shell>
   );
 }
-}
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
