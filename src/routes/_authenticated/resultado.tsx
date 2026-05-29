@@ -45,8 +45,15 @@ const related: Related[] = [
   { code: "1217605", name: "Registro completo LP 601", compat: "SB-20B, SB-B" },
 ];
 
+const distribs = [
+  { name: "AgroDistrib SP", dist: "12 km", city: "Ribeirão Preto · SP" },
+  { name: "Jacto Center MT", dist: "38 km", city: "Rondonópolis · MT" },
+  { name: "Campo Peças PR", dist: "67 km", city: "Londrina · PR" },
+];
+
 const YOUTUBE_URL =
   "https://www.youtube.com/results?search_query=manuten%C3%A7%C3%A3o+Jacto+SB20";
+
 
 function Resultado() {
   const [rating, setRating] = useState(0);
