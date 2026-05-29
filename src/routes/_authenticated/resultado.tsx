@@ -9,7 +9,13 @@ import {
   Youtube,
   Star,
   ExternalLink,
+  MapPin,
+  Navigation,
+  Phone,
+  Headphones,
+  MessageSquare,
 } from "lucide-react";
+
 import { Shell } from "@/components/jacto/Shell";
 import {
   Sheet,
