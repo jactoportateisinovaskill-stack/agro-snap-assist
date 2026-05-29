@@ -54,6 +54,7 @@ export function useEquipment(): [Equipment | null, (e: Equipment | null) => void
 // Sample catalog hints for the SB-20B universe
 export const EQUIPMENT_OPTIONS = {
   modelos: ["SB-20B", "SB-12", "SB-30", "AJ-401", "Uniport 4530"],
-  linhas: ["Costal", "Pulverizadores Tratorizados", "Autopropelidos"],
+  linhas: ["Costal"],
+
   versoes: ["Standard", "Premium", "Eletrônica"],
 };
