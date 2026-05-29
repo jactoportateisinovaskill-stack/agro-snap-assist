@@ -110,18 +110,21 @@ export function RegionModal({ open, onConfirm }: Props) {
             }}
           >
             <option value="">{t("region.placeholder")}</option>
-            <optgroup label="Brasil — Estados">
+            <optgroup label="🇧🇷  BRASIL — ESTADOS">
               {STATES.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>{`   ${s}`}</option>
               ))}
             </optgroup>
+            <option disabled>──────────────────────────</option>
             {Object.entries(COUNTRIES).map(([group, list]) => (
-              <optgroup key={group} label={group}>
+              <optgroup key={group} label={`🌎  ${group.toUpperCase()}`}>
                 {list.map((c) => (
-                  <option key={c} value={c}>{c}</option>
+                  <option key={c} value={c}>{`   ${c}`}</option>
                 ))}
               </optgroup>
             ))}
+
+
           </select>
 
 
