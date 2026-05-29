@@ -12,18 +12,35 @@ import { useRegion, regionAvailability } from "@/lib/region";
 import { useT } from "@/i18n";
 
 const STATES = [
-  "Brasil — Centro-Oeste",
-  "Brasil — Sudeste",
-  "Brasil — Sul",
-  "Brasil — Nordeste",
-  "Brasil — Norte",
-  "Argentina",
-  "México",
-  "LATAM",
-  "Europa",
-  "Ásia",
-  "África",
+  "Acre",
+  "Alagoas",
+  "Amapá",
+  "Amazonas",
+  "Bahia",
+  "Ceará",
+  "Distrito Federal",
+  "Espírito Santo",
+  "Goiás",
+  "Maranhão",
+  "Mato Grosso",
+  "Mato Grosso do Sul",
+  "Minas Gerais",
+  "Pará",
+  "Paraíba",
+  "Paraná",
+  "Pernambuco",
+  "Piauí",
+  "Rio de Janeiro",
+  "Rio Grande do Norte",
+  "Rio Grande do Sul",
+  "Rondônia",
+  "Roraima",
+  "Santa Catarina",
+  "São Paulo",
+  "Sergipe",
+  "Tocantins",
 ];
+
 
 interface Props {
   open: boolean;
