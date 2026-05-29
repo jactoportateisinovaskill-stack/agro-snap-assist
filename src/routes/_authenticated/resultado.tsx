@@ -236,7 +236,7 @@ function Resultado() {
                   <Star
                     key={n}
                     className={`h-5 w-5 ${
-                      n <= rating ? "fill-primary text-primary" : "text-muted"
+                      n <= rating ? "fill-primary text-primary" : "text-muted-foreground/50"
                     }`}
                   />
                 ))}
@@ -267,7 +267,7 @@ function Resultado() {
                     >
                       <Star
                         className={`h-7 w-7 transition ${
-                          active ? "fill-primary text-primary" : "text-muted"
+                          active ? "fill-primary text-primary" : "text-muted-foreground/50"
                         }`}
                       />
                     </button>
