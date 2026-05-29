@@ -157,6 +157,67 @@ function Resultado() {
           </a>
         </div>
 
+        {/* Distribuidores próximos */}
+        <section className="mt-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+              Distribuidores próximos
+            </h3>
+          </div>
+          <ul className="mt-2 space-y-2">
+            {distribs.map((d) => (
+              <li key={d.name} className="rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-card)]">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-primary">
+                    <MapPin className="h-4 w-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-bold text-secondary truncate">{d.name}</div>
+                    <div className="text-[11px] text-muted-foreground">{d.city}</div>
+                    <div className="text-[10px] font-semibold text-primary mt-0.5">{d.dist} de distância</div>
+                  </div>
+                </div>
+                <div className="mt-2 grid grid-cols-2 gap-2">
+                  <button className="flex h-9 items-center justify-center gap-1.5 rounded-lg border border-primary text-primary text-[11px] font-bold">
+                    <Navigation className="h-3.5 w-3.5" /> Mapa
+                  </button>
+                  <button className="flex h-9 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-[11px] font-bold">
+                    <Phone className="h-3.5 w-3.5" /> Contato
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Torre de Atendimento */}
+        <section className="mt-6">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            Torre de Atendimento Jacto
+          </h3>
+          <div className="mt-2 rounded-2xl bg-secondary p-4 text-secondary-foreground shadow-[var(--shadow-card)]">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                <Headphones className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="text-sm font-bold">Suporte técnico 24/7</div>
+                <div className="text-[11px] text-white/60">Atendentes especializados Jacto</div>
+              </div>
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <a href="tel:0800" className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
+                <Phone className="h-4 w-4" /> Ligar agora
+              </a>
+              <button className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-white/10 text-white text-xs font-semibold">
+                <MessageSquare className="h-4 w-4" /> Chamado
+              </button>
+            </div>
+          </div>
+        </section>
+
+
+
         {/* Rating */}
         <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
           {submitted ? (
