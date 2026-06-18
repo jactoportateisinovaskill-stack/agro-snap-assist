@@ -58,8 +58,6 @@ function CargoPage() {
   const navigate = useNavigate();
   const { locale } = useLocale();
   const [cargo, setCargo] = useCargo();
-  const [region] = useRegion();
-  const [openRegion, setOpenRegion] = useState(false);
 
   const labels = {
     pt: { title: "Qual é o seu cargo?", subtitle: "Selecione o perfil que melhor representa o seu acesso.", cta: "Prosseguir" },
@@ -69,11 +67,7 @@ function CargoPage() {
 
   const handleProceed = () => {
     if (!cargo) return;
-    if (!region) {
-      setOpenRegion(true);
-    } else {
-      navigate({ to: "/login" });
-    }
+    navigate({ to: "/login" });
   };
 
   return (
