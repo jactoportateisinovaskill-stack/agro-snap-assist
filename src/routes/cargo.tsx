@@ -1,8 +1,11 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { Briefcase, Store, Wrench, User as UserIcon, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
+import { RegionModal } from "@/components/jacto/RegionModal";
 import { useCargo, type Cargo, CARGO_LABELS } from "@/lib/profile";
+import { useRegion } from "@/lib/region";
 import { useLocale } from "@/i18n";
 
 export const Route = createFileRoute("/cargo")({
@@ -53,12 +56,23 @@ function CargoPage() {
   const navigate = useNavigate();
   const { locale } = useLocale();
   const [cargo, setCargo] = useCargo();
+  const [region] = useRegion();
+  const [openRegion, setOpenRegion] = useState(false);
 
   const labels = {
     pt: { title: "Qual é o seu cargo?", subtitle: "Selecione o perfil que melhor representa o seu acesso.", cta: "Prosseguir" },
     en: { title: "What is your role?", subtitle: "Pick the profile that best matches your access.", cta: "Continue" },
     es: { title: "¿Cuál es su cargo?", subtitle: "Elija el perfil que mejor representa su acceso.", cta: "Continuar" },
   }[locale];
+
+  const handleProceed = () => {
+    if (!cargo) return;
+    if (!region) {
+      setOpenRegion(true);
+    } else {
+      navigate({ to: "/login" });
+    }
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-background via-muted/40 to-background">
@@ -106,7 +120,7 @@ function CargoPage() {
         </div>
 
         <button
-          onClick={() => navigate({ to: "/" })}
+          onClick={handleProceed}
           disabled={!cargo}
           className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition active:scale-[0.98] disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
         >
@@ -114,6 +128,14 @@ function CargoPage() {
           <ArrowRight className="h-4 w-4" />
         </button>
       </main>
+
+      <RegionModal
+        open={openRegion}
+        onConfirm={() => {
+          setOpenRegion(false);
+          navigate({ to: "/login" });
+        }}
+      />
     </div>
   );
 }
