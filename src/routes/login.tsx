@@ -75,7 +75,7 @@ function LoginPage() {
                   {cargo ? CARGO_LABELS[cargo][locale] : "—"}
                 </span>
               </div>
-              <Link to="/cargo" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
+              <Link to="/" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
                 {t("login.changeRegion")}
               </Link>
             </div>
