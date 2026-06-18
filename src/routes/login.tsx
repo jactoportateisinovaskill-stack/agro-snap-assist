@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link, redirect } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { LogIn, MapPin, Briefcase } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
@@ -6,8 +6,15 @@ import { useT, useLocale } from "@/i18n";
 import { login } from "@/lib/auth";
 import { useRegion } from "@/lib/region";
 import { useCargo, CARGO_LABELS } from "@/lib/profile";
+import { getCargo } from "@/lib/profile";
+import { getRegion } from "@/lib/region";
 
 export const Route = createFileRoute("/login")({
+  beforeLoad: () => {
+    if (typeof window === "undefined") return;
+    if (!getCargo()) throw redirect({ to: "/cargo" });
+    if (!getRegion()) throw redirect({ to: "/" });
+  },
   head: () => ({ meta: [{ title: "Login — Jacto Connect IA" }] }),
   validateSearch: (s: Record<string, unknown>) => ({
     redirect: (s.redirect as string) || "/equipamento",
