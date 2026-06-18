@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
-import { Briefcase, Store, Wrench, User as UserIcon, ArrowRight } from "lucide-react";
+import { Briefcase, Wrench, User as UserIcon, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
 import { useCargo, type Cargo, CARGO_LABELS, getCargo } from "@/lib/profile";
