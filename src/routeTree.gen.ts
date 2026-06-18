@@ -9,8 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RegiaoRouteImport } from './routes/regiao'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as CargoRouteImport } from './routes/cargo'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedResultadoRouteImport } from './routes/_authenticated/resultado'
@@ -23,14 +23,14 @@ import { Route as AuthenticatedAnalisandoRouteImport } from './routes/_authentic
 import { Route as AuthenticatedGestorRouteImport } from './routes/_authenticated/_gestor'
 import { Route as AuthenticatedGestorInsightsRouteImport } from './routes/_authenticated/_gestor/insights'
 
+const RegiaoRoute = RegiaoRouteImport.update({
+  id: '/regiao',
+  path: '/regiao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CargoRoute = CargoRouteImport.update({
-  id: '/cargo',
-  path: '/cargo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
@@ -93,8 +93,8 @@ const AuthenticatedGestorInsightsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cargo': typeof CargoRoute
   '/login': typeof LoginRoute
+  '/regiao': typeof RegiaoRoute
   '/analisando': typeof AuthenticatedAnalisandoRoute
   '/capturar': typeof AuthenticatedCapturarRoute
   '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
@@ -106,8 +106,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cargo': typeof CargoRoute
   '/login': typeof LoginRoute
+  '/regiao': typeof RegiaoRoute
   '/analisando': typeof AuthenticatedAnalisandoRoute
   '/capturar': typeof AuthenticatedCapturarRoute
   '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
@@ -121,8 +121,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/cargo': typeof CargoRoute
   '/login': typeof LoginRoute
+  '/regiao': typeof RegiaoRoute
   '/_authenticated/_gestor': typeof AuthenticatedGestorRouteWithChildren
   '/_authenticated/analisando': typeof AuthenticatedAnalisandoRoute
   '/_authenticated/capturar': typeof AuthenticatedCapturarRoute
@@ -137,8 +137,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/cargo'
     | '/login'
+    | '/regiao'
     | '/analisando'
     | '/capturar'
     | '/compatibilidade'
@@ -150,8 +150,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/cargo'
     | '/login'
+    | '/regiao'
     | '/analisando'
     | '/capturar'
     | '/compatibilidade'
@@ -164,8 +164,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/cargo'
     | '/login'
+    | '/regiao'
     | '/_authenticated/_gestor'
     | '/_authenticated/analisando'
     | '/_authenticated/capturar'
@@ -180,24 +180,24 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
-  CargoRoute: typeof CargoRoute
   LoginRoute: typeof LoginRoute
+  RegiaoRoute: typeof RegiaoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/regiao': {
+      id: '/regiao'
+      path: '/regiao'
+      fullPath: '/regiao'
+      preLoaderRoute: typeof RegiaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cargo': {
-      id: '/cargo'
-      path: '/cargo'
-      fullPath: '/cargo'
-      preLoaderRoute: typeof CargoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -320,8 +320,8 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
-  CargoRoute: CargoRoute,
   LoginRoute: LoginRoute,
+  RegiaoRoute: RegiaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

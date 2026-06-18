@@ -12,8 +12,8 @@ import { getRegion } from "@/lib/region";
 export const Route = createFileRoute("/login")({
   beforeLoad: () => {
     if (typeof window === "undefined") return;
-    if (!getRegion()) throw redirect({ to: "/" });
-    if (!getCargo()) throw redirect({ to: "/cargo" });
+    if (!getCargo()) throw redirect({ to: "/" });
+    if (!getRegion()) throw redirect({ to: "/regiao" });
   },
   head: () => ({ meta: [{ title: "Login — Jacto Connect IA" }] }),
   validateSearch: (s: Record<string, unknown>) => ({
@@ -48,7 +48,7 @@ function LoginPage() {
   };
 
   return (
-    <Shell back="/">
+    <Shell back="/regiao">
       <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center px-3 py-4">
         <div className="w-full max-w-md rounded-2xl border-2 border-border bg-card p-6 shadow-[var(--shadow-elegant)]">
 
@@ -75,7 +75,7 @@ function LoginPage() {
                   {cargo ? CARGO_LABELS[cargo][locale] : "—"}
                 </span>
               </div>
-              <Link to="/cargo" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
+              <Link to="/" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
                 {t("login.changeRegion")}
               </Link>
             </div>
@@ -87,7 +87,7 @@ function LoginPage() {
                 </span>
                 <span className="font-bold text-secondary truncate">{region || "—"}</span>
               </div>
-              <Link to="/" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
+              <Link to="/regiao" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
                 {t("login.changeRegion")}
               </Link>
             </div>
