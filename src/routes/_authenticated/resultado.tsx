@@ -11,7 +11,7 @@ import {
   ExternalLink,
   MapPin,
   Navigation,
-  Phone,
+  
   Headphones,
   MessageSquare,
 } from "lucide-react";

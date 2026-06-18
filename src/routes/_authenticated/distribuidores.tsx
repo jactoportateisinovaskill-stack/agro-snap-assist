@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MapPin, Phone, FileText, BookOpen, Headphones, MessageSquare, Map, ChevronRight, Navigation } from "lucide-react";
+import { MapPin, FileText, BookOpen, Headphones, MessageSquare, Map, ChevronRight, Navigation } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 
 export const Route = createFileRoute("/_authenticated/distribuidores")({
