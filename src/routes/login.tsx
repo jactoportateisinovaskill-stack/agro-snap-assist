@@ -48,7 +48,7 @@ function LoginPage() {
   };
 
   return (
-    <Shell back="/">
+    <Shell back="/regiao">
       <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center px-3 py-4">
         <div className="w-full max-w-md rounded-2xl border-2 border-border bg-card p-6 shadow-[var(--shadow-elegant)]">
 
