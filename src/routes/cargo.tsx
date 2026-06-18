@@ -124,14 +124,8 @@ function CargoPage() {
           <ArrowRight className="h-4 w-4" />
         </button>
       </main>
-
-      <RegionModal
-        open={openRegion}
-        onConfirm={() => {
-          setOpenRegion(false);
-          navigate({ to: "/login" });
-        }}
-      />
     </div>
+  );
+}
   );
 }
