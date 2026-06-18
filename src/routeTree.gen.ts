@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegiaoRouteImport } from './routes/regiao'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as CargoRouteImport } from './routes/cargo'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedResultadoRouteImport } from './routes/_authenticated/resultado'
@@ -32,11 +31,6 @@ const RegiaoRoute = RegiaoRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CargoRoute = CargoRouteImport.update({
-  id: '/cargo',
-  path: '/cargo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
@@ -99,7 +93,6 @@ const AuthenticatedGestorInsightsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cargo': typeof CargoRoute
   '/login': typeof LoginRoute
   '/regiao': typeof RegiaoRoute
   '/analisando': typeof AuthenticatedAnalisandoRoute
@@ -113,7 +106,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cargo': typeof CargoRoute
   '/login': typeof LoginRoute
   '/regiao': typeof RegiaoRoute
   '/analisando': typeof AuthenticatedAnalisandoRoute
@@ -129,7 +121,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
-  '/cargo': typeof CargoRoute
   '/login': typeof LoginRoute
   '/regiao': typeof RegiaoRoute
   '/_authenticated/_gestor': typeof AuthenticatedGestorRouteWithChildren
@@ -146,7 +137,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/cargo'
     | '/login'
     | '/regiao'
     | '/analisando'
@@ -160,7 +150,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/cargo'
     | '/login'
     | '/regiao'
     | '/analisando'
@@ -175,7 +164,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
-    | '/cargo'
     | '/login'
     | '/regiao'
     | '/_authenticated/_gestor'
@@ -192,7 +180,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
-  CargoRoute: typeof CargoRoute
   LoginRoute: typeof LoginRoute
   RegiaoRoute: typeof RegiaoRoute
 }
@@ -211,13 +198,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cargo': {
-      id: '/cargo'
-      path: '/cargo'
-      fullPath: '/cargo'
-      preLoaderRoute: typeof CargoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -340,7 +320,6 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
-  CargoRoute: CargoRoute,
   LoginRoute: LoginRoute,
   RegiaoRoute: RegiaoRoute,
 }
