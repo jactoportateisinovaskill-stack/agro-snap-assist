@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
-import { Briefcase, Wrench, User as UserIcon, ArrowRight } from "lucide-react";
+import { Briefcase, Wrench, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
 import { useCargo, type Cargo, CARGO_LABELS, getCargo } from "@/lib/profile";
@@ -35,18 +35,9 @@ const OPTIONS: { id: Cargo; icon: React.ReactNode; desc: { pt: string; en: strin
     id: "parceiro",
     icon: <Wrench className="h-6 w-6" />,
     desc: {
-      pt: "Revenda autorizada ou equipe de assistência técnica em campo.",
-      en: "Authorized reseller or field technical support team.",
-      es: "Distribuidor autorizado o equipo de asistencia técnica en campo.",
-    },
-  },
-  {
-    id: "cliente",
-    icon: <UserIcon className="h-6 w-6" />,
-    desc: {
-      pt: "Produtor ou operador do equipamento.",
-      en: "Producer or equipment operator.",
-      es: "Productor u operador del equipo.",
+      pt: "Produtor, operador do equipamento, revenda autorizada ou assistência técnica.",
+      en: "Producer, equipment operator, authorized reseller or technical support.",
+      es: "Productor, operador del equipo, distribuidor autorizado o asistencia técnica.",
     },
   },
 ];
