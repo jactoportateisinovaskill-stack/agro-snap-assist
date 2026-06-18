@@ -1,10 +1,11 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { LogIn, MapPin, ShieldCheck, User as UserIcon } from "lucide-react";
+import { LogIn, MapPin, Briefcase } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
-import { useT } from "@/i18n";
-import { login, type Role } from "@/lib/auth";
+import { useT, useLocale } from "@/i18n";
+import { login } from "@/lib/auth";
 import { useRegion } from "@/lib/region";
+import { useCargo, CARGO_LABELS } from "@/lib/profile";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [{ title: "Login — Jacto Connect IA" }] }),
@@ -16,19 +17,21 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const t = useT();
+  const { locale } = useLocale();
   const navigate = useNavigate();
   const search = Route.useSearch();
   const [region] = useRegion();
+  const [cargo] = useCargo();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<Role>("usuario");
 
-  const ready = region.trim().length > 0;
+  const ready = region.trim().length > 0 && !!cargo;
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (!ready) return;
+    if (!ready || !cargo) return;
+    const role = cargo === "gestor" ? "manager" : "usuario";
     login({ name, email, role });
     if (role === "manager") {
       navigate({ to: "/insights" });
@@ -54,18 +57,33 @@ function LoginPage() {
             </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-2 text-[11px]">
-
-            <div className="flex items-center gap-1.5 text-secondary min-w-0">
-              <MapPin className="h-3 w-3 text-primary shrink-0" />
-              <span className="font-semibold uppercase tracking-wider text-muted-foreground">
-                {t("login.regionLabel")}
-              </span>
-              <span className="font-bold text-secondary truncate">{region || "—"}</span>
+          <div className="mt-5 space-y-2">
+            <div className="flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-2 text-[11px]">
+              <div className="flex items-center gap-1.5 text-secondary min-w-0">
+                <Briefcase className="h-3 w-3 text-primary shrink-0" />
+                <span className="font-semibold uppercase tracking-wider text-muted-foreground">
+                  {t("login.cargoLabel")}
+                </span>
+                <span className="font-bold text-secondary truncate">
+                  {cargo ? CARGO_LABELS[cargo][locale] : "—"}
+                </span>
+              </div>
+              <Link to="/cargo" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
+                {t("login.changeRegion")}
+              </Link>
             </div>
-            <Link to="/" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
-              {t("login.changeRegion")}
-            </Link>
+            <div className="flex items-center justify-between rounded-lg border border-border bg-muted/60 px-3 py-2 text-[11px]">
+              <div className="flex items-center gap-1.5 text-secondary min-w-0">
+                <MapPin className="h-3 w-3 text-primary shrink-0" />
+                <span className="font-semibold uppercase tracking-wider text-muted-foreground">
+                  {t("login.regionLabel")}
+                </span>
+                <span className="font-bold text-secondary truncate">{region || "—"}</span>
+              </div>
+              <Link to="/" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
+                {t("login.changeRegion")}
+              </Link>
+            </div>
           </div>
 
           {!ready && (
@@ -106,27 +124,6 @@ function LoginPage() {
               />
             </Field>
 
-            <div>
-              <label className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                {t("login.role")}
-              </label>
-              <div className="mt-2 grid grid-cols-2 gap-2.5">
-
-                <RoleOption
-                  active={role === "usuario"}
-                  onClick={() => setRole("usuario")}
-                  icon={<UserIcon className="h-4 w-4" />}
-                  label={t("login.roleUser")}
-                />
-                <RoleOption
-                  active={role === "manager"}
-                  onClick={() => setRole("manager")}
-                  icon={<ShieldCheck className="h-4 w-4" />}
-                  label={t("login.roleManager")}
-                />
-              </div>
-            </div>
-
             <button
               type="submit"
               disabled={!ready}
@@ -158,32 +155,5 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
       </span>
       <div className="mt-1.5">{children}</div>
     </label>
-  );
-}
-
-function RoleOption({
-  active,
-  onClick,
-  icon,
-  label,
-}: {
-  active: boolean;
-  onClick: () => void;
-  icon: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-sm font-semibold transition ${
-        active
-          ? "border-primary bg-primary/10 text-primary"
-          : "border-border bg-background text-secondary hover:bg-muted"
-      }`}
-    >
-      {icon}
-      {label}
-    </button>
   );
 }

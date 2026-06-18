@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { MapPin, Pencil, ArrowRight } from "lucide-react";
 import { RegionModal } from "@/components/jacto/RegionModal";
@@ -6,8 +6,13 @@ import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
 import { useRegion } from "@/lib/region";
 import { useT } from "@/i18n";
+import { getCargo } from "@/lib/profile";
 
 export const Route = createFileRoute("/")({
+  beforeLoad: () => {
+    if (typeof window === "undefined") return;
+    if (!getCargo()) throw redirect({ to: "/cargo" });
+  },
   head: () => ({
     meta: [
       { title: "Jacto Connect IA — Início" },

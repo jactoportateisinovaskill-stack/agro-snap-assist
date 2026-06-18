@@ -28,9 +28,10 @@ export const es: Dict = {
     roleUser: "Usuario",
     roleManager: "Gestor",
     submit: "Entrar",
-    regionLabel: "Región seleccionada",
+    regionLabel: "Región",
+    cargoLabel: "Cargo",
     changeRegion: "Cambiar",
-    noRegion: "Seleccione una región antes de continuar",
+    noRegion: "Seleccione cargo y región antes de continuar",
   },
   nav: {
     insights: "Insights",

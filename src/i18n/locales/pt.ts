@@ -7,7 +7,7 @@ export type Dict = {
   login: {
     title: string; subtitle: string; name: string; email: string; password: string;
     role: string; roleUser: string; roleManager: string; submit: string;
-    regionLabel: string; changeRegion: string; noRegion: string;
+    regionLabel: string; cargoLabel: string; changeRegion: string; noRegion: string;
   };
   nav: { insights: string; identify: string };
   equipment: {
@@ -35,8 +35,8 @@ export const pt: Dict = {
     name: "Nome", email: "E-mail", password: "Senha",
     role: "Perfil de acesso", roleUser: "Usuário", roleManager: "Gestor",
     submit: "Entrar",
-    regionLabel: "Região selecionada", changeRegion: "Alterar",
-    noRegion: "Selecione uma região antes de continuar",
+    regionLabel: "Região", cargoLabel: "Cargo", changeRegion: "Alterar",
+    noRegion: "Selecione cargo e região antes de continuar",
   },
   nav: { insights: "Insights", identify: "Identificar peça" },
   equipment: {
