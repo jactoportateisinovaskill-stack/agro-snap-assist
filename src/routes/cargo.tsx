@@ -1,14 +1,16 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { Briefcase, Store, Wrench, User as UserIcon, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
-import { RegionModal } from "@/components/jacto/RegionModal";
 import { useCargo, type Cargo, CARGO_LABELS } from "@/lib/profile";
-import { useRegion } from "@/lib/region";
+import { getRegion } from "@/lib/region";
 import { useLocale } from "@/i18n";
 
 export const Route = createFileRoute("/cargo")({
+  beforeLoad: () => {
+    if (typeof window === "undefined") return;
+    if (!getRegion()) throw redirect({ to: "/" });
+  },
   head: () => ({ meta: [{ title: "Selecionar cargo — Jacto Connect IA" }] }),
   component: CargoPage,
 });
@@ -56,8 +58,6 @@ function CargoPage() {
   const navigate = useNavigate();
   const { locale } = useLocale();
   const [cargo, setCargo] = useCargo();
-  const [region] = useRegion();
-  const [openRegion, setOpenRegion] = useState(false);
 
   const labels = {
     pt: { title: "Qual é o seu cargo?", subtitle: "Selecione o perfil que melhor representa o seu acesso.", cta: "Prosseguir" },
@@ -67,11 +67,7 @@ function CargoPage() {
 
   const handleProceed = () => {
     if (!cargo) return;
-    if (!region) {
-      setOpenRegion(true);
-    } else {
-      navigate({ to: "/login" });
-    }
+    navigate({ to: "/login" });
   };
 
   return (
@@ -128,14 +124,6 @@ function CargoPage() {
           <ArrowRight className="h-4 w-4" />
         </button>
       </main>
-
-      <RegionModal
-        open={openRegion}
-        onConfirm={() => {
-          setOpenRegion(false);
-          navigate({ to: "/login" });
-        }}
-      />
     </div>
   );
 }

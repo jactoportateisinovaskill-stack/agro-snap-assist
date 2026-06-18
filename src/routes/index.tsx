@@ -11,8 +11,8 @@ import { getCargo } from "@/lib/profile";
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
     if (typeof window === "undefined") return;
-    if (!getCargo()) throw redirect({ to: "/cargo" });
-    if (!getRegion()) throw redirect({ to: "/cargo" });
+    // Region first; once chosen, route to cargo selection.
+    if (getRegion() && !getCargo()) throw redirect({ to: "/cargo" });
   },
   head: () => ({
     meta: [
@@ -27,7 +27,8 @@ function Index() {
   const t = useT();
   const navigate = useNavigate();
   const [region] = useRegion();
-  const [open, setOpen] = useState(false);
+  // Open immediately when no region is set.
+  const [open, setOpen] = useState(() => !region);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-background via-muted/40 to-background">
@@ -47,7 +48,6 @@ function Index() {
 
         {region && (
           <>
-            {/* Prominent region card — primary surface for changing/confirming */}
             <button
               onClick={() => setOpen(true)}
               className="group mt-7 flex w-full items-center gap-3 rounded-2xl border-2 border-primary/30 bg-card p-4 text-left shadow-[var(--shadow-card)] transition hover:border-primary hover:shadow-[var(--shadow-glow)] active:scale-[0.99]"
@@ -67,7 +67,7 @@ function Index() {
             </button>
 
             <button
-              onClick={() => navigate({ to: "/login" })}
+              onClick={() => navigate({ to: "/cargo" })}
               className="mt-4 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition active:scale-[0.98]"
             >
               {t("region.cta")}
@@ -81,7 +81,7 @@ function Index() {
         open={open}
         onConfirm={() => {
           setOpen(false);
-          navigate({ to: "/login" });
+          if (!getCargo()) navigate({ to: "/cargo" });
         }}
       />
     </div>
