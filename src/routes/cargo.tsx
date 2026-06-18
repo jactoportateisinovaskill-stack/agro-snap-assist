@@ -1,14 +1,16 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate, redirect } from "@tanstack/react-router";
 import { Briefcase, Store, Wrench, User as UserIcon, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
-import { RegionModal } from "@/components/jacto/RegionModal";
 import { useCargo, type Cargo, CARGO_LABELS } from "@/lib/profile";
-import { useRegion } from "@/lib/region";
+import { getRegion } from "@/lib/region";
 import { useLocale } from "@/i18n";
 
 export const Route = createFileRoute("/cargo")({
+  beforeLoad: () => {
+    if (typeof window === "undefined") return;
+    if (!getRegion()) throw redirect({ to: "/" });
+  },
   head: () => ({ meta: [{ title: "Selecionar cargo — Jacto Connect IA" }] }),
   component: CargoPage,
 });
