@@ -87,7 +87,7 @@ function LoginPage() {
                 </span>
                 <span className="font-bold text-secondary truncate">{region || "—"}</span>
               </div>
-              <Link to="/" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
+              <Link to="/regiao" className="ml-2 text-[10px] font-bold text-primary hover:underline shrink-0">
                 {t("login.changeRegion")}
               </Link>
             </div>
