@@ -27,8 +27,7 @@ function Index() {
   const t = useT();
   const navigate = useNavigate();
   const [region] = useRegion();
-  // Open immediately on first render when no region — no useEffect delay.
-  const [open, setOpen] = useState(() => !region);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-background via-muted/40 to-background">
