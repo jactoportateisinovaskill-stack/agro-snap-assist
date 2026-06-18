@@ -87,7 +87,7 @@ function Resultado() {
         {/* Identified card */}
         <div className="mt-4 rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
           <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
-            <Tag className="h-3 w-3" /> 427062
+            <Tag className="h-3 w-3" /> Código: 427062
           </div>
           <h2 className="mt-2 text-2xl font-extrabold leading-tight text-secondary">
             Bico Completo JD-12
@@ -173,8 +173,8 @@ function Resultado() {
               </div>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2">
-              <a href="tel:0800" className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
-                <Phone className="h-4 w-4" /> Ligar agora
+              <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
+                <MessageSquare className="h-4 w-4" /> WhatsApp
               </a>
               <button className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-white/10 text-white text-xs font-semibold">
                 <MessageSquare className="h-4 w-4" /> Chamado
@@ -219,9 +219,9 @@ function Resultado() {
                       <button className="flex h-9 items-center justify-center gap-1.5 rounded-lg border border-primary text-primary text-[11px] font-bold">
                         <Navigation className="h-3.5 w-3.5" /> Mapa
                       </button>
-                      <button className="flex h-9 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-[11px] font-bold">
-                        <Phone className="h-3.5 w-3.5" /> Contato
-                      </button>
+                      <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="flex h-9 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-[11px] font-bold">
+                        <MessageSquare className="h-3.5 w-3.5" /> WhatsApp
+                      </a>
                     </div>
                   </li>
                 ))}

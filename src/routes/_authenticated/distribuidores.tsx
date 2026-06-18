@@ -42,9 +42,9 @@ function Distribuidores() {
                 <button className="flex h-10 items-center justify-center gap-1.5 rounded-lg border border-primary text-primary text-xs font-bold">
                   <Navigation className="h-3.5 w-3.5" /> Ver no mapa
                 </button>
-                <button className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
-                  <Phone className="h-3.5 w-3.5" /> Contato
-                </button>
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="flex h-10 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
+                  <MessageSquare className="h-3.5 w-3.5" /> WhatsApp
+                </a>
               </div>
             </li>
           ))}
@@ -76,8 +76,8 @@ function Distribuidores() {
             </div>
           </div>
           <div className="mt-4 grid grid-cols-2 gap-2">
-            <a href="tel:0800" className="flex h-11 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-sm font-bold">
-              <Phone className="h-4 w-4" /> Ligar agora
+            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="flex h-11 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-sm font-bold">
+              <MessageSquare className="h-4 w-4" /> WhatsApp
             </a>
             <button className="flex h-11 items-center justify-center gap-1.5 rounded-lg bg-white/10 text-white text-sm font-semibold">
               <MessageSquare className="h-4 w-4" /> Abrir chamado
