@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export type Cargo = "gestor" | "revenda" | "assistencia" | "cliente";
+export type Cargo = "gestor" | "parceiro" | "cliente";
 
 const KEY = "jacto:cargo";
 const EVENT = "jacto:cargo";
@@ -8,7 +8,12 @@ const EVENT = "jacto:cargo";
 export function getCargo(): Cargo | null {
   if (typeof window === "undefined") return null;
   const v = window.localStorage.getItem(KEY);
-  if (v === "gestor" || v === "revenda" || v === "assistencia" || v === "cliente") return v;
+  if (v === "gestor" || v === "parceiro" || v === "cliente") return v;
+  // Migrate legacy values (revenda/assistencia) → parceiro
+  if (v === "revenda" || v === "assistencia") {
+    window.localStorage.setItem(KEY, "parceiro");
+    return "parceiro";
+  }
   return null;
 }
 
@@ -32,7 +37,11 @@ export function useCargo(): [Cargo | null, (c: Cargo | null) => void] {
 
 export const CARGO_LABELS: Record<Cargo, { pt: string; en: string; es: string }> = {
   gestor: { pt: "Gestor", en: "Manager", es: "Gestor" },
-  revenda: { pt: "Revenda", en: "Reseller", es: "Distribuidor" },
-  assistencia: { pt: "Assistência técnica", en: "Technical support", es: "Asistencia técnica" },
+  parceiro: {
+    pt: "Revenda / Assistência técnica",
+    en: "Reseller / Technical support",
+    es: "Distribuidor / Asistencia técnica",
+  },
   cliente: { pt: "Cliente", en: "Customer", es: "Cliente" },
 };
+
