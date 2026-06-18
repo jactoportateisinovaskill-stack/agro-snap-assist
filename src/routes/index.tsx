@@ -32,21 +32,12 @@ const OPTIONS: { id: Cargo; icon: React.ReactNode; desc: { pt: string; en: strin
     },
   },
   {
-    id: "revenda",
-    icon: <Store className="h-6 w-6" />,
-    desc: {
-      pt: "Distribuidor autorizado de peças e equipamentos.",
-      en: "Authorized parts and equipment dealer.",
-      es: "Distribuidor autorizado de piezas y equipos.",
-    },
-  },
-  {
-    id: "assistencia",
+    id: "parceiro",
     icon: <Wrench className="h-6 w-6" />,
     desc: {
-      pt: "Equipe técnica de manutenção em campo.",
-      en: "Field maintenance technical team.",
-      es: "Equipo técnico de mantenimiento en campo.",
+      pt: "Revenda autorizada ou equipe de assistência técnica em campo.",
+      en: "Authorized reseller or field technical support team.",
+      es: "Distribuidor autorizado o equipo de asistencia técnica en campo.",
     },
   },
   {
