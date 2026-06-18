@@ -10,10 +10,9 @@ import { getCargo } from "@/lib/profile";
 import { getRegion } from "@/lib/region";
 
 export const Route = createFileRoute("/login")({
-  beforeLoad: ({ search }) => {
+  beforeLoad: () => {
     if (typeof window === "undefined") return;
-    const redirectTo = (search as { redirect?: string })?.redirect ?? "/equipamento";
-    if (!getCargo()) throw redirect({ to: "/cargo", search: { redirect: redirectTo } });
+    if (!getCargo()) throw redirect({ to: "/cargo" });
     if (!getRegion()) throw redirect({ to: "/" });
   },
   head: () => ({ meta: [{ title: "Login — Jacto Connect IA" }] }),
