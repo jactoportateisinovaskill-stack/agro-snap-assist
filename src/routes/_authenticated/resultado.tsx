@@ -9,9 +9,7 @@ import {
   Youtube,
   Star,
   ExternalLink,
-  MapPin,
-  Navigation,
-  
+  BookOpen,
   Headphones,
   MessageSquare,
 } from "lucide-react";
