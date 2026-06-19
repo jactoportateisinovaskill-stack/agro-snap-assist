@@ -155,6 +155,49 @@ function Resultado() {
               YouTube <ExternalLink className="h-3.5 w-3.5" />
             </span>
           </a>
+
+          {/* Catálogo da peça */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="flex h-14 w-full items-center gap-3 rounded-xl border border-border bg-background px-5 font-bold text-secondary hover:bg-muted transition">
+                <BookOpen className="h-5 w-5 text-primary" />
+                Catálogo da peça
+                <ChevronRight className="ml-auto h-5 w-5" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="rounded-t-2xl p-0 sm:max-w-md sm:mx-auto">
+              <SheetHeader className="px-5 pt-5 pb-2 text-left">
+                <SheetTitle className="text-lg font-extrabold text-secondary">
+                  Catálogo da peça
+                </SheetTitle>
+                <SheetDescription className="text-xs text-muted-foreground">
+                  Itens relacionados ao equipamento identificado.
+                </SheetDescription>
+              </SheetHeader>
+              <ul className="max-h-[60vh] overflow-y-auto px-5 pb-6 pt-2 space-y-2">
+                {catalogItems.map((item) => (
+                  <li
+                    key={item.code}
+                    className="rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-card)]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                          {item.code}
+                        </div>
+                        <div className="mt-0.5 font-bold text-secondary truncate">
+                          {item.name}
+                        </div>
+                      </div>
+                      <div className="shrink-0 rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold text-secondary">
+                        {item.type}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </SheetContent>
+          </Sheet>
         </div>
 
         {/* Torre de Atendimento */}
@@ -182,53 +225,6 @@ function Resultado() {
             </div>
           </div>
         </section>
-
-        {/* Distribuidores próximos (widget expansivo) */}
-        <div className="mt-4">
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="flex h-14 w-full items-center gap-3 rounded-xl border border-border bg-background px-5 font-bold text-secondary hover:bg-muted transition">
-                <MapPin className="h-5 w-5 text-primary" />
-                Distribuidores próximos
-                <ChevronRight className="ml-auto h-5 w-5" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-2xl p-0 sm:max-w-md sm:mx-auto">
-              <SheetHeader className="px-5 pt-5 pb-2 text-left">
-                <SheetTitle className="text-lg font-extrabold text-secondary">
-                  Distribuidores próximos
-                </SheetTitle>
-                <SheetDescription className="text-xs text-muted-foreground">
-                  Pontos de atendimento autorizados na sua região.
-                </SheetDescription>
-              </SheetHeader>
-              <ul className="max-h-[60vh] overflow-y-auto px-5 pb-6 pt-2 space-y-2">
-                {distribs.map((d) => (
-                  <li key={d.name} className="rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-card)]">
-                    <div className="flex items-start gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-primary">
-                        <MapPin className="h-4 w-4" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-bold text-secondary truncate">{d.name}</div>
-                        <div className="text-[11px] text-muted-foreground">{d.city}</div>
-                        <div className="text-[10px] font-semibold text-primary mt-0.5">{d.dist} de distância</div>
-                      </div>
-                    </div>
-                    <div className="mt-2 grid grid-cols-2 gap-2">
-                      <button className="flex h-9 items-center justify-center gap-1.5 rounded-lg border border-primary text-primary text-[11px] font-bold">
-                        <Navigation className="h-3.5 w-3.5" /> Mapa
-                      </button>
-                      <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="flex h-9 items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground text-[11px] font-bold">
-                        <MessageSquare className="h-3.5 w-3.5" /> WhatsApp
-                      </a>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </SheetContent>
-          </Sheet>
-        </div>
 
 
 
