@@ -12,7 +12,9 @@ import {
   BookOpen,
   Headphones,
   MessageSquare,
+  ShoppingCart,
 } from "lucide-react";
+import explodedJd12 from "@/assets/exploded-jd12.jpg";
 
 import { Shell } from "@/components/jacto/Shell";
 import {
