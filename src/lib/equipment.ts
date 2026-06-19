@@ -37,7 +37,7 @@ export function setEquipment(e: Equipment | null) {
 }
 
 export function isEquipmentComplete(e: Equipment | null): e is Equipment {
-  return !!e && !!e.modelo && !!e.linha && !!e.serial;
+  return !!e && !!e.modelo;
 }
 
 export function useEquipment(): [Equipment | null, (e: Equipment | null) => void] {
