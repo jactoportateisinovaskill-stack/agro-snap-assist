@@ -102,9 +102,99 @@ function Resultado() {
 
         {/* Actions */}
         <div className="mt-4 space-y-3">
+          {/* Catálogo da peça */}
           <Sheet>
             <SheetTrigger asChild>
-              <button className="flex h-14 w-full items-center gap-3 rounded-xl bg-primary px-5 text-primary-foreground font-bold shadow-[var(--shadow-glow)] active:scale-[0.98] transition">
+              <button className="flex h-14 w-full items-center gap-3 rounded-xl border border-border bg-background px-5 font-bold text-secondary hover:bg-muted transition">
+                <BookOpen className="h-5 w-5 text-primary" />
+                Catálogo da peça
+                <ChevronRight className="ml-auto h-5 w-5" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="rounded-t-2xl p-0 sm:max-w-md sm:mx-auto">
+              <SheetHeader className="px-5 pt-5 pb-2 text-left">
+                <SheetTitle className="text-lg font-extrabold text-secondary">
+                  Catálogo da peça
+                </SheetTitle>
+                <SheetDescription className="text-xs text-muted-foreground">
+                  Vista explodida e informações técnicas.
+                </SheetDescription>
+              </SheetHeader>
+              <div className="max-h-[70vh] overflow-y-auto px-5 pb-6 pt-2 space-y-4">
+                {/* Código + nome */}
+                <div className="rounded-xl border border-border bg-card p-3">
+                  <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary">
+                    <Tag className="h-3 w-3" /> Código: 427062
+                  </div>
+                  <div className="mt-1 font-extrabold text-secondary">
+                    Bico Completo JD-12
+                  </div>
+                </div>
+
+                {/* Vista explodida */}
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-2">
+                    Vista explodida
+                  </div>
+                  <div className="rounded-xl border border-border bg-white overflow-hidden">
+                    <img
+                      src={explodedJd12}
+                      alt="Vista explodida do Bico Completo JD-12"
+                      loading="lazy"
+                      width={1024}
+                      height={1024}
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Informações técnicas */}
+                <div>
+                  <div className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground mb-2">
+                    Informações técnicas
+                  </div>
+                  <dl className="rounded-xl border border-border bg-card divide-y divide-border text-sm">
+                    {[
+                      ["Categoria", "Bico de pulverização"],
+                      ["Material", "Polímero técnico + cerâmica"],
+                      ["Vazão nominal", "1,2 L/min @ 3 bar"],
+                      ["Pressão de trabalho", "1 – 5 bar"],
+                      ["Ângulo de leque", "110°"],
+                      ["Rosca", "M11 x 1"],
+                      ["Peso", "38 g"],
+                      ["Compatibilidade", "SB-20B, SB-B, SB20 Linha M"],
+                    ].map(([k, v]) => (
+                      <div key={k} className="flex items-start justify-between gap-3 px-3 py-2">
+                        <dt className="text-xs font-semibold text-muted-foreground">{k}</dt>
+                        <dd className="text-right font-semibold text-secondary">{v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+
+          {/* Comprar peça — destaque */}
+          <a
+            href="https://www.jacto.com.br/pt/pecas-e-servicos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative flex h-16 w-full items-center gap-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-5 font-extrabold text-primary-foreground shadow-[var(--shadow-glow)] ring-2 ring-primary/30 ring-offset-2 ring-offset-background active:scale-[0.98] transition"
+          >
+            <ShoppingCart className="h-6 w-6" />
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-base">Comprar peça</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wider opacity-90">
+                Loja oficial Jacto
+              </span>
+            </div>
+            <ExternalLink className="ml-auto h-5 w-5" />
+          </a>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="flex h-14 w-full items-center gap-3 rounded-xl bg-secondary px-5 text-secondary-foreground font-bold shadow-[var(--shadow-card)] active:scale-[0.98] transition">
                 <Layers className="h-5 w-5" />
                 Peças relacionadas
                 <ChevronRight className="ml-auto h-5 w-5" />
@@ -157,50 +247,8 @@ function Resultado() {
               YouTube <ExternalLink className="h-3.5 w-3.5" />
             </span>
           </a>
-
-          {/* Catálogo da peça */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="flex h-14 w-full items-center gap-3 rounded-xl border border-border bg-background px-5 font-bold text-secondary hover:bg-muted transition">
-                <BookOpen className="h-5 w-5 text-primary" />
-                Catálogo da peça
-                <ChevronRight className="ml-auto h-5 w-5" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-2xl p-0 sm:max-w-md sm:mx-auto">
-              <SheetHeader className="px-5 pt-5 pb-2 text-left">
-                <SheetTitle className="text-lg font-extrabold text-secondary">
-                  Catálogo da peça
-                </SheetTitle>
-                <SheetDescription className="text-xs text-muted-foreground">
-                  Itens relacionados ao equipamento identificado.
-                </SheetDescription>
-              </SheetHeader>
-              <ul className="max-h-[60vh] overflow-y-auto px-5 pb-6 pt-2 space-y-2">
-                {catalogItems.map((item) => (
-                  <li
-                    key={item.code}
-                    className="rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-card)]"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-primary">
-                          {item.code}
-                        </div>
-                        <div className="mt-0.5 font-bold text-secondary truncate">
-                          {item.name}
-                        </div>
-                      </div>
-                      <div className="shrink-0 rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold text-secondary">
-                        {item.type}
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </SheetContent>
-          </Sheet>
         </div>
+
 
         {/* Torre de Atendimento */}
         <section className="mt-6">
