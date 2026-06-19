@@ -43,10 +43,12 @@ const related: Related[] = [
   { code: "1217605", name: "Registro completo LP 601", compat: "SB-20B, SB-B" },
 ];
 
-const distribs = [
-  { name: "AgroDistrib SP", dist: "12 km", city: "Ribeirão Preto · SP" },
-  { name: "Jacto Center MT", dist: "38 km", city: "Rondonópolis · MT" },
-  { name: "Campo Peças PR", dist: "67 km", city: "Londrina · PR" },
+const catalogItems = [
+  { code: "427062", name: "Bico Completo JD-12", type: "Bico" },
+  { code: "1168547", name: "Bico JD 12", type: "Bico" },
+  { code: "1168545", name: "Filtro do bico M50/60", type: "Filtro" },
+  { code: "1168546", name: "Capa do bico", type: "Acessório" },
+  { code: "1217605", name: "Registro completo LP 601", type: "Registro" },
 ];
 
 const YOUTUBE_URL =
