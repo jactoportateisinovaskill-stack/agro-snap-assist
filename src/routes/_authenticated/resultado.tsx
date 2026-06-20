@@ -95,6 +95,66 @@ function Resultado() {
 
         {/* Actions */}
         <div className="mt-4 space-y-3">
+          {/* Comprar peça — destaque */}
+          <a
+            href="https://www.jacto.com.br/pt/pecas-e-servicos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative flex h-16 w-full items-center gap-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-5 font-extrabold text-primary-foreground shadow-[var(--shadow-glow)] ring-2 ring-primary/30 ring-offset-2 ring-offset-background active:scale-[0.98] transition"
+          >
+            <ShoppingCart className="h-6 w-6" />
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-base">Comprar peça</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wider opacity-90">
+                Loja oficial Jacto
+              </span>
+            </div>
+            <ExternalLink className="ml-auto h-5 w-5" />
+          </a>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <button className="flex h-14 w-full items-center gap-3 rounded-xl bg-secondary px-5 text-secondary-foreground font-bold shadow-[var(--shadow-card)] active:scale-[0.98] transition">
+                <Layers className="h-5 w-5" />
+                Peças relacionadas
+                <ChevronRight className="ml-auto h-5 w-5" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="bottom" className="rounded-t-2xl p-0 sm:max-w-md sm:mx-auto">
+              <SheetHeader className="px-5 pt-5 pb-2 text-left">
+                <SheetTitle className="text-lg font-extrabold text-secondary">
+                  Peças relacionadas
+                </SheetTitle>
+                <SheetDescription className="text-xs text-muted-foreground">
+                  Compatíveis ou sugeridas para o equipamento identificado.
+                </SheetDescription>
+              </SheetHeader>
+              <ul className="max-h-[60vh] overflow-y-auto px-5 pb-6 pt-2 space-y-2">
+                {related.map((r) => (
+                  <li
+                    key={r.code}
+                    className="rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-card)]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-primary">
+                          {r.code}
+                        </div>
+                        <div className="mt-0.5 font-bold text-secondary truncate">
+                          {r.name}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold text-secondary">
+                      <CheckCircle2 className="h-3 w-3 text-success" />
+                      Compatível: {r.compat}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </SheetContent>
+          </Sheet>
+
           {/* Catálogo da peça */}
           <Sheet>
             <SheetTrigger asChild>
@@ -165,66 +225,6 @@ function Resultado() {
                   </dl>
                 </div>
               </div>
-            </SheetContent>
-          </Sheet>
-
-          {/* Comprar peça — destaque */}
-          <a
-            href="https://www.jacto.com.br/pt/pecas-e-servicos"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative flex h-16 w-full items-center gap-3 rounded-xl bg-gradient-to-r from-primary to-primary/80 px-5 font-extrabold text-primary-foreground shadow-[var(--shadow-glow)] ring-2 ring-primary/30 ring-offset-2 ring-offset-background active:scale-[0.98] transition"
-          >
-            <ShoppingCart className="h-6 w-6" />
-            <div className="flex flex-col items-start leading-tight">
-              <span className="text-base">Comprar peça</span>
-              <span className="text-[10px] font-semibold uppercase tracking-wider opacity-90">
-                Loja oficial Jacto
-              </span>
-            </div>
-            <ExternalLink className="ml-auto h-5 w-5" />
-          </a>
-
-          <Sheet>
-            <SheetTrigger asChild>
-              <button className="flex h-14 w-full items-center gap-3 rounded-xl bg-secondary px-5 text-secondary-foreground font-bold shadow-[var(--shadow-card)] active:scale-[0.98] transition">
-                <Layers className="h-5 w-5" />
-                Peças relacionadas
-                <ChevronRight className="ml-auto h-5 w-5" />
-              </button>
-            </SheetTrigger>
-            <SheetContent side="bottom" className="rounded-t-2xl p-0 sm:max-w-md sm:mx-auto">
-              <SheetHeader className="px-5 pt-5 pb-2 text-left">
-                <SheetTitle className="text-lg font-extrabold text-secondary">
-                  Peças relacionadas
-                </SheetTitle>
-                <SheetDescription className="text-xs text-muted-foreground">
-                  Compatíveis ou sugeridas para o equipamento identificado.
-                </SheetDescription>
-              </SheetHeader>
-              <ul className="max-h-[60vh] overflow-y-auto px-5 pb-6 pt-2 space-y-2">
-                {related.map((r) => (
-                  <li
-                    key={r.code}
-                    className="rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-card)]"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="min-w-0">
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-primary">
-                          {r.code}
-                        </div>
-                        <div className="mt-0.5 font-bold text-secondary truncate">
-                          {r.name}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-1 text-[10px] font-semibold text-secondary">
-                      <CheckCircle2 className="h-3 w-3 text-success" />
-                      Compatível: {r.compat}
-                    </div>
-                  </li>
-                ))}
-              </ul>
             </SheetContent>
           </Sheet>
 
