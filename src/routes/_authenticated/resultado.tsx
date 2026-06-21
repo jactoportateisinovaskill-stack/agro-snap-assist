@@ -39,10 +39,14 @@ interface Related {
 }
 
 const related: Related[] = [
-  { code: "1168547", name: "Bico JD 12", compat: "SB-20B, SB-B" },
-  { code: "1168545", name: "Filtro do bico M50/60", compat: "SB-20B, SB20 Linha M" },
-  { code: "1168546", name: "Capa do bico", compat: "SB-20B" },
-  { code: "1217605", name: "Registro completo LP 601", compat: "SB-20B, SB-B" },
+  { code: "1168546", name: "Capa do bico JD-12", compat: "Bico JD-12 / SB-20B" },
+  { code: "999142", name: "Anel de vedação O-ring do bico", compat: "Bico JD-12 / SB-20B" },
+  { code: "999158", name: "Junta de vedação do porta-bico", compat: "Bico JD-12 / SB-20B" },
+  { code: "1168545", name: "Filtro do bico M50/60", compat: "Bico JD-12 / SB-20B" },
+  { code: "323456", name: "Tampa do reservatório SB-20B", compat: "Pulverizador SB-20B" },
+  { code: "323478", name: "Vedação da tampa do reservatório", compat: "Pulverizador SB-20B" },
+  { code: "445221", name: "Diafragma do registro LP 601", compat: "Registro / SB-20B" },
+  { code: "1217605", name: "Kit de reparo do registro LP 601", compat: "Registro / SB-20B" },
 ];
 
 
