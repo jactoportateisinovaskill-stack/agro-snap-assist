@@ -5,10 +5,6 @@ import { Shell } from "@/components/jacto/Shell";
 import { useT } from "@/i18n";
 import { useEquipment, EMPTY_EQUIPMENT } from "@/lib/equipment";
 import sb20b from "@/assets/equip-sb20b.jpg";
-import sb12 from "@/assets/equip-sb12.jpg";
-import sb30 from "@/assets/equip-sb30.jpg";
-import aj401 from "@/assets/equip-aj401.jpg";
-import uniport from "@/assets/equip-uniport4530.jpg";
 
 export const Route = createFileRoute("/_authenticated/equipamento")({
   head: () => ({ meta: [{ title: "Equipamento — Jacto Connect IA" }] }),
@@ -16,11 +12,9 @@ export const Route = createFileRoute("/_authenticated/equipamento")({
 });
 
 const MODELS: { id: string; name: string; tag: string; img: string }[] = [
-  { id: "SB-20B", name: "SB-20B", tag: "Costal elétrico", img: sb20b },
-  { id: "SB-12", name: "SB-12", tag: "Costal manual", img: sb12 },
-  { id: "SB-30", name: "SB-30", tag: "Costal de alavanca", img: sb30 },
-  { id: "AJ-401", name: "AJ-401", tag: "Pulverizador rebocado", img: aj401 },
-  { id: "Uniport 4530", name: "Uniport 4530", tag: "Autopropelido", img: uniport },
+  { id: "SB-20B", name: "SB-20B", tag: "Costal à bateria 20L", img: sb20b },
+  { id: "SB-15", name: "SB-15", tag: "Costal à bateria 15L", img: sb20b },
+  { id: "SB-25", name: "SB-25", tag: "Costal à bateria 25L", img: sb20b },
 ];
 
 function EquipmentPage() {
