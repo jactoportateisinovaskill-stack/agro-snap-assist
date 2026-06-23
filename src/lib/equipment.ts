@@ -51,9 +51,9 @@ export function useEquipment(): [Equipment | null, (e: Equipment | null) => void
   return [eq, (v) => { setEquipment(v); setEq(v); }];
 }
 
-// Sample catalog hints for the SB-20B universe
+// Sample catalog hints for the battery-powered backpack sprayer universe
 export const EQUIPMENT_OPTIONS = {
-  modelos: ["SB-20B", "SB-12", "SB-30", "AJ-401", "Uniport 4530"],
+  modelos: ["SB-20B", "SB-15", "SB-25"],
   linhas: ["Costal"],
 
   versoes: ["Standard", "Premium", "Eletrônica"],
