@@ -13,9 +13,9 @@ export const Route = createFileRoute("/_authenticated/equipamento")({
 });
 
 const MODELS: { id: string; name: string; tag: string; img: string }[] = [
-  { id: "SB-20", name: "SB-20", tag: "Costal à bateria 20L", img: sb20 },
-  { id: "SB-20 sem kit elétrico", name: "SB-20 sem kit elétrico", tag: "Costal à bateria 20L (sem bateria/carregador)", img: sb20 },
-  { id: "SB-8", name: "SB-8", tag: "Pulverizador Bateria Profissional", img: sb8 },
+  { id: "SB-20", name: "SB-20", tag: "Costal à bateria 20L", img: sb20.url },
+  { id: "SB-20 sem kit elétrico", name: "SB-20 sem kit elétrico", tag: "Costal à bateria 20L (sem bateria/carregador)", img: sb20.url },
+  { id: "SB-8", name: "SB-8", tag: "Pulverizador Bateria Profissional", img: sb8.url },
 ];
 
 function EquipmentPage() {
