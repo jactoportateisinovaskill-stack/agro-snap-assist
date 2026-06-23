@@ -4,8 +4,8 @@ import { Wrench, Check, ArrowRight } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 import { useT } from "@/i18n";
 import { useEquipment, EMPTY_EQUIPMENT } from "@/lib/equipment";
-import sb20 from "@/assets/equip-sb20.jpg";
-import sb8 from "@/assets/equip-sb8.jpg";
+import sb20 from "@/assets/equip-sb20.png";
+import sb8 from "@/assets/equip-sb8.png";
 
 export const Route = createFileRoute("/_authenticated/equipamento")({
   head: () => ({ meta: [{ title: "Equipamento — Jacto Connect IA" }] }),
