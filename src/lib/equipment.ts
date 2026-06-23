@@ -53,7 +53,7 @@ export function useEquipment(): [Equipment | null, (e: Equipment | null) => void
 
 // Sample catalog hints for the battery-powered backpack sprayer universe
 export const EQUIPMENT_OPTIONS = {
-  modelos: ["SB-20", "SB-20 sem kit elétrico", "SB-8"],
+  modelos: ["SB-20", "SB-8"],
   linhas: ["Costal"],
 
   versoes: ["Standard", "Premium", "Eletrônica"],
