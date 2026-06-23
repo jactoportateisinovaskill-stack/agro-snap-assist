@@ -4,7 +4,8 @@ import { Wrench, Check, ArrowRight } from "lucide-react";
 import { Shell } from "@/components/jacto/Shell";
 import { useT } from "@/i18n";
 import { useEquipment, EMPTY_EQUIPMENT } from "@/lib/equipment";
-import sb20b from "@/assets/equip-sb20b.jpg";
+import sb20 from "@/assets/equip-sb20.jpg";
+import sb8 from "@/assets/equip-sb8.jpg";
 
 export const Route = createFileRoute("/_authenticated/equipamento")({
   head: () => ({ meta: [{ title: "Equipamento — Jacto Connect IA" }] }),
@@ -12,9 +13,9 @@ export const Route = createFileRoute("/_authenticated/equipamento")({
 });
 
 const MODELS: { id: string; name: string; tag: string; img: string }[] = [
-  { id: "SB-20B", name: "SB-20B", tag: "Costal à bateria 20L", img: sb20b },
-  { id: "SB-15", name: "SB-15", tag: "Costal à bateria 15L", img: sb20b },
-  { id: "SB-25", name: "SB-25", tag: "Costal à bateria 25L", img: sb20b },
+  { id: "SB-20", name: "SB-20", tag: "Costal à bateria 20L", img: sb20 },
+  { id: "SB-20 sem kit elétrico", name: "SB-20 sem kit elétrico", tag: "Costal à bateria 20L (sem bateria/carregador)", img: sb20 },
+  { id: "SB-8", name: "SB-8", tag: "Pulverizador Bateria Profissional", img: sb8 },
 ];
 
 function EquipmentPage() {
