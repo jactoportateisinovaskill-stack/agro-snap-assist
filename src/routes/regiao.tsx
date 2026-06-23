@@ -60,7 +60,7 @@ function RegionPage() {
             </button>
 
             <button
-              onClick={() => navigate({ to: "/login" })}
+              onClick={() => navigate({ to: "/equipamento" })}
               className="mt-4 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition active:scale-[0.98]"
             >
               {t("region.cta")}
@@ -74,7 +74,7 @@ function RegionPage() {
         open={open}
         onConfirm={() => {
           setOpen(false);
-          navigate({ to: "/login" });
+          navigate({ to: "/equipamento" });
         }}
       />
     </div>

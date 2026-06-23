@@ -40,7 +40,7 @@ function EquipmentPage() {
   const skip = () => navigate({ to: "/capturar" });
 
   return (
-    <Shell back="/login">
+    <Shell back="/regiao">
       <div className="mx-auto w-full max-w-2xl">
         <div className="mt-2 flex flex-col items-center text-center">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
