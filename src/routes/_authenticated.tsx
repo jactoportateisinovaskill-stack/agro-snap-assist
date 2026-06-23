@@ -1,13 +1,19 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
-import { getAuthUser } from "@/lib/auth";
+import { getAuthUser, setAuthUser } from "@/lib/auth";
+import { getCargo } from "@/lib/profile";
 
 export const Route = createFileRoute("/_authenticated")({
-  beforeLoad: ({ location }) => {
-    // Mock auth lives in localStorage — only check on the client. During SSR
-    // we let the route render; the client navigation will re-evaluate.
+  beforeLoad: () => {
     if (typeof window === "undefined") return;
     if (!getAuthUser()) {
-      throw redirect({ to: "/login", search: { redirect: location.href } });
+      // Login removed from prototype flow — auto-seed a session from cargo.
+      const cargo = getCargo();
+      if (!cargo) throw redirect({ to: "/" });
+      setAuthUser({
+        name: "Operador",
+        email: "demo@jacto.com",
+        role: cargo === "gestor" ? "manager" : "usuario",
+      });
     }
   },
   component: () => <Outlet />,
