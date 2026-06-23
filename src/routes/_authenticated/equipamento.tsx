@@ -62,14 +62,14 @@ function EquipmentPage() {
                     : "border-border hover:border-primary/40"
                 }`}
               >
-                <div className="aspect-square w-full overflow-hidden rounded-lg bg-muted">
+                <div className="flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-white p-3">
                   <img
                     src={m.img}
                     alt={`Equipamento ${m.name}`}
                     width={1024}
                     height={1024}
                     loading="lazy"
-                    className="h-full w-full object-cover transition group-hover:scale-105"
+                    className="h-full w-full object-contain transition group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-2 flex items-start justify-between gap-1">
