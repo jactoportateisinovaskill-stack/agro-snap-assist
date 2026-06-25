@@ -142,7 +142,7 @@ function Resultado() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <div className="text-[10px] font-bold uppercase tracking-wider text-primary">
-                          {r.code}
+                          Código: {r.code}
                         </div>
                         <div className="mt-0.5 font-bold text-secondary truncate">
                           {r.name}
