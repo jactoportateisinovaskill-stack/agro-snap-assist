@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as RegiaoRouteImport } from './routes/regiao'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,11 +22,6 @@ import { Route as AuthenticatedAnalisandoRouteImport } from './routes/_authentic
 import { Route as AuthenticatedGestorRouteImport } from './routes/_authenticated/_gestor'
 import { Route as AuthenticatedGestorInsightsRouteImport } from './routes/_authenticated/_gestor/insights'
 
-const RegiaoRoute = RegiaoRouteImport.update({
-  id: '/regiao',
-  path: '/regiao',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -94,7 +88,6 @@ const AuthenticatedGestorInsightsRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/regiao': typeof RegiaoRoute
   '/analisando': typeof AuthenticatedAnalisandoRoute
   '/capturar': typeof AuthenticatedCapturarRoute
   '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
@@ -107,7 +100,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/regiao': typeof RegiaoRoute
   '/analisando': typeof AuthenticatedAnalisandoRoute
   '/capturar': typeof AuthenticatedCapturarRoute
   '/compatibilidade': typeof AuthenticatedCompatibilidadeRoute
@@ -122,7 +114,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/regiao': typeof RegiaoRoute
   '/_authenticated/_gestor': typeof AuthenticatedGestorRouteWithChildren
   '/_authenticated/analisando': typeof AuthenticatedAnalisandoRoute
   '/_authenticated/capturar': typeof AuthenticatedCapturarRoute
@@ -138,7 +129,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/login'
-    | '/regiao'
     | '/analisando'
     | '/capturar'
     | '/compatibilidade'
@@ -151,7 +141,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
-    | '/regiao'
     | '/analisando'
     | '/capturar'
     | '/compatibilidade'
@@ -165,7 +154,6 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/login'
-    | '/regiao'
     | '/_authenticated/_gestor'
     | '/_authenticated/analisando'
     | '/_authenticated/capturar'
@@ -181,18 +169,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   LoginRoute: typeof LoginRoute
-  RegiaoRoute: typeof RegiaoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/regiao': {
-      id: '/regiao'
-      path: '/regiao'
-      fullPath: '/regiao'
-      preLoaderRoute: typeof RegiaoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -321,7 +301,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   LoginRoute: LoginRoute,
-  RegiaoRoute: RegiaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
