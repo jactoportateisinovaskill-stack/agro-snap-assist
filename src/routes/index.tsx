@@ -3,14 +3,12 @@ import { Briefcase, Wrench, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/jacto/Shell";
 import { LanguageSwitcher } from "@/components/jacto/LanguageSwitcher";
 import { useCargo, type Cargo, CARGO_LABELS, getCargo } from "@/lib/profile";
-import { getRegion } from "@/lib/region";
 import { useLocale } from "@/i18n";
 
 export const Route = createFileRoute("/")({
   beforeLoad: () => {
     if (typeof window === "undefined") return;
-    // Cargo first; once chosen, route to region selection.
-    if (getCargo() && !getRegion()) throw redirect({ to: "/regiao" });
+    if (getCargo()) throw redirect({ to: "/equipamento" });
   },
   head: () => ({
     meta: [
