@@ -97,7 +97,7 @@ function CargoPage() {
         </div>
 
         <button
-          onClick={() => cargo && navigate({ to: "/regiao" })}
+          onClick={() => cargo && navigate({ to: "/equipamento" })}
           disabled={!cargo}
           className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition active:scale-[0.98] disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none"
         >
